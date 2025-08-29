@@ -4,7 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to match exact Vyapar color specifications with primary red theme */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -39,20 +38,22 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.45 0.15 258);
 
-  /* Vyapar-specific color variables matching exact specifications */
   --primary-red: #ed1a3b;
   --primary-dark-red: #dd3333;
   --text-primary: #314259;
   --text-secondary: #787878;
   --text-headings-alt: var(--primary-red);
+  --text-link-active: #3b82f6;
+  --accent-orange: #f97316;
   --background-light: #ffffff;
   --background-section-gray: #fafafa;
+  --background-feature-card: #f8faff;
   --background-faq-accent: #ffe6eb;
+  --background-comparison-section: #fff5f6;
   --footer-background: #2e2c2c;
   --text-on-dark: #ffffff;
   --border-color: #dee2e6;
 
-  /* Typography variables */
   --font-family-sans: "Poppins", sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -154,7 +155,6 @@
     font-size: var(--base-font-size);
   }
 
-  /* Updated typography to match Vyapar specifications */
   h1 {
     font-family: var(--font-family-sans);
     font-weight: var(--font-weight-bold);
@@ -183,7 +183,6 @@
     color: var(--text-secondary);
   }
 
-  /* Global container class */
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -214,5 +213,29 @@
     h2 {
       font-size: 32px;
     }
+  }
+}
+
+@layer utilities {
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

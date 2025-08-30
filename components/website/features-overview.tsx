@@ -74,12 +74,12 @@ function FeatureSection({ feature, imagePosition }: FeatureSectionProps) {
       <h2 className="text-4xl lg:text-5xl font-bold text-foreground leading-tight text-balance">
         {feature.title}
       </h2>
-      <p className="text-lg text-muted-foreground max-w-lg">{feature.shortDescription}</p>
+      <p className="text-lg text-foreground max-w-lg">{feature.shortDescription}</p>
 
       {isExpanded && (
         <div className="space-y-4 animate-in fade-in duration-500">
           {feature.longDescription.map((paragraph, index) => (
-            <p key={index} className="text-lg text-muted-foreground max-w-lg">
+            <p key={index} className="text-lg text-foreground max-w-lg">
               {paragraph}
             </p>
           ))}
@@ -87,7 +87,7 @@ function FeatureSection({ feature, imagePosition }: FeatureSectionProps) {
       )}
 
       {feature.longDescription && feature.longDescription.length > 0 && (
-        <button onClick={toggleReadMore} className="text-primary font-semibold hover:underline">
+        <button onClick={toggleReadMore} className="text-destructive font-semibold hover:underline">
           {isExpanded ? "- Read less" : "+ Read more"}
         </button>
       )}

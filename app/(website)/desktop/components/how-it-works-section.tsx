@@ -36,7 +36,7 @@ export default function HowItWorksSection() {
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-16">
           {howItWorksData.mainTitle}
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

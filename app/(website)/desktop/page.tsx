@@ -13,9 +13,11 @@ import PowerhouseFeatures from "./components/powerhouse-features"
 import PreHeaderCTA from "./components/pre-header-cta"
 import SocialProof from "./components/social-proof"
 import VideoDemoSection from "./components/video-demo-section"
+import FinalSaleBanner from "@/components/website/final-sale-banner"
 export default function DesktopPage() {
     return (
         <main className="min-h-screen">
+            <FinalSaleBanner/>
             <DesktopHeroSection />
             <SocialProof/>
             <FeatureComparison/>

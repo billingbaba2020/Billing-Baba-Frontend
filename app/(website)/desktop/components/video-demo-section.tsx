@@ -11,7 +11,7 @@ export default function VideoDemoSection() {
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-12">
           {demoData.title}
         </h2>
         <div className="relative max-w-4xl mx-auto flex justify-center lg:justify-end">

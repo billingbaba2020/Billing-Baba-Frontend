@@ -148,7 +148,7 @@ export default function IndustrySolutions() {
   return (
     <section className="py-16 md:py-20 bg-[var(--background-section-gray)]">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-12">
           Ultimate Desktop Billing Solution for Every Industry
         </h2>
 
@@ -186,7 +186,7 @@ export default function IndustrySolutions() {
           <div className="bg-white p-8 rounded-2xl  border border-gray-100 max-h-[450px] overflow-y-auto thin-scrollbar">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-[var(--text-primary)]">{activeIndustry.name}</h3>
-              <div className="space-y-4 text-[var(--text-secondary)]">
+              <div className="space-y-4 text-[var(--text-foreground)]">
                 <p className="font-semibold">{activeIndustry.content.subTitle}</p>
                 <p>{activeIndustry.content.description}</p>
               </div>
@@ -195,7 +195,7 @@ export default function IndustrySolutions() {
                   <div key={index}>
                     <p className="text-sm">
                       <strong className="text-[var(--text-primary)] font-semibold">{feature.title}</strong>{" "}
-                      <span className="text-[var(--text-secondary)]">{feature.text}</span>
+                      <span className="text-[var(--text-foreground)]">{feature.text}</span>
                     </p>
                   </div>
                 ))}

@@ -45,7 +45,7 @@ export default function FeatureComparison() {
   return (
     <section className="bg-[var(--background-comparison-section)] py-16 md:py-20">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-12">
           Why Vyapar is the Right Choice for Your Business?
         </h2>
 

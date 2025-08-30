@@ -9,10 +9,12 @@ import FinalCTA from "@/components/website/final-cta"
 import FAQ from "@/components/website/faq"
 import BenefitsSection from "@/components/website/benefits-section" 
 import RatingSection from "@/components/website/rating-section"
+import FinalSaleBanner from "@/components/website/final-sale-banner"
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
+      <FinalSaleBanner/>
       <HeroSection />
       <SocialProof />
       <FeaturesOverview />

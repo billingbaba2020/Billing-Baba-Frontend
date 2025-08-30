@@ -11,7 +11,8 @@ const featuresData = [
       "Choose from over 50 invoice formats for a unique and professional look.",
       "Save time with bulk payment reminders via WhatsApp, email, or calls.",
     ],
-    imageSrc: "/invoicing/best-program/time-saving.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/06/Invoicing-Solution.webp",
     imageAlt: "A person using invoicing software on a laptop and mobile phone",
   },
   {
@@ -24,7 +25,8 @@ const featuresData = [
       "Upgrade to premium features and desktop applications with a subscription.",
       "Works for all industries (SMEs, freelancers, professionals).",
     ],
-    imageSrc: "/invoicing/best-program/free-use.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/06/Streamline-workflow.webp",
     imageAlt: "A person holding a mobile phone showing the free invoicing app",
   },
   {
@@ -35,7 +37,8 @@ const featuresData = [
       "Customize invoices to fit your company's specific requirements.",
       "The business dashboard tracks activity and provides data for better strategy creation.",
     ],
-    imageSrc: "/invoicing/best-program/workflow.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/06/Optimize-business-operation.webp",
     imageAlt:
       "A person working on a laptop with charts and graphs on the screen",
   },
@@ -47,7 +50,8 @@ const featuresData = [
       "Manage invoicing, accounting, and inventory on a single app.",
       "Eliminates manual calculations and errors and keeps the data updated.",
     ],
-    imageSrc: "/invoicing/best-program/operations.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/06/Optimize-business-operation.webp",
     imageAlt:
       "A person using the invoicing app on a laptop and phone at a desk",
   },

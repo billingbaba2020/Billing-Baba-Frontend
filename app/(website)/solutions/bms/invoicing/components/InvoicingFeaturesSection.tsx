@@ -4,7 +4,8 @@ import Image from "next/image";
 // --- ✨ Data for the Features Section ---
 const featuresData = [
   {
-    imageSrc: "/invoicing/features/feature-1.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Custom-invoice-1534x1536.webp", // IMPORTANT: Image path
     title: "Professional & Customisable Invoices",
     description: (
       <>
@@ -20,7 +21,8 @@ const featuresData = [
     ),
   },
   {
-    imageSrc: "/invoicing/features/feature-2.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Quick-billing-1534x1536.webp", // IMPORTANT: Image path
     title: "Instant Invoicing",
     description: (
       <>
@@ -33,7 +35,8 @@ const featuresData = [
     ),
   },
   {
-    imageSrc: "/invoicing/features/feature-3.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/QR-Code-1536x1536.webp", // IMPORTANT: Image path
     title: "Print QR Code",
     description: (
       <>
@@ -47,7 +50,8 @@ const featuresData = [
     ),
   },
   {
-    imageSrc: "/invoicing/features/feature-4.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Multi-Print-Compatibility-1024x1024.webp",
     title: "Multi-Type Printer Support",
     description: (
       <>

@@ -23,7 +23,8 @@ const featuresData = [
     ),
     description2:
       "The app facilitates the generation of GST reports for the filings, maintains accurate tax records, and provides real-time reports. This reduces errors, saves time, and ensures the business meets all its tax obligations efficiently.",
-    imageSrc: "/invoicing/advanced/gst-compliance.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Img_GST-Invoicing-Rectangle.webp",
     imageAlt: "GST calculation feature in an invoice",
   },
   {
@@ -32,7 +33,8 @@ const featuresData = [
       "Barcode labels are essential for businesses because they help to improve efficiency and accuracy, and help to track items or products, leading to cost savings and better customer service.",
     description2:
       "Billing Baba's online invoicing software's barcode label generation feature allows businesses to create and print custom barcode labels for their products easily. It enables you to include essential product details like name, price, and SKU.",
-    imageSrc: "/invoicing/advanced/barcode-generation.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Barcode-Scanning.webp",
     imageAlt: "Barcode label generation feature",
   },
   {
@@ -41,7 +43,8 @@ const featuresData = [
       "Our free invoice app's loyalty point feature enables businesses to reward their customers for repeat purchases. With this feature, you can set up a points system where customers earn points for each transaction, which can later be redeemed for discounts or other rewards.",
     description2:
       "This feature helps build customer loyalty, encouraging repeat business, and enhancing customer satisfaction, making it a valuable tool for small businesses looking to strengthen their customer relationships.",
-    imageSrc: "/invoicing/advanced/loyalty-points.png",
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Img_Loyalty-Points-379.webp",
     imageAlt: "Loyalty points feature in the app",
   },
 ];

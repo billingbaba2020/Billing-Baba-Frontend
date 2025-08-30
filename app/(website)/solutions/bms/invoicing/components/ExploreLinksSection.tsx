@@ -22,7 +22,7 @@ const ArrowIcon = () => (
 // --- ✨ Data for the Explore Section ---
 const exploreData = {
   title: "Explore Billing Baba Invoicing Software for All Businesses",
-  imageSrc: "/invoicing/explore/software.png", // IMPORTANT: Image path
+  imageSrc: "https://vyaparapp.in/v/z/wp-content/uploads/2023/01/6-13.webp", // IMPORTANT: Image path
   linkColumns: [
     [
       "Invoicing Software for Garage",

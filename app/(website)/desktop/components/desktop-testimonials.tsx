@@ -38,7 +38,7 @@ export default function DesktopTestimonials() {
     <section className="py-16 md:py-20 bg-[var(--background-section-gray)]">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-foreground)] mb-2">
             What Customers are Talking About Vyapar's PC Billing App?
           </h2>
           <div className="inline-block h-1 w-48 bg-gradient-to-r from-red-500 to-yellow-400 rounded-full"></div>

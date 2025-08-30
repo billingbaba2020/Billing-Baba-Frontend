@@ -48,11 +48,18 @@
   --background-light: #ffffff;
   --background-section-gray: #fafafa;
   --background-feature-card: #f8faff;
+  --background-beyond-billing: #f7fcff;
   --background-faq-accent: #ffe6eb;
   --background-comparison-section: #fff5f6;
   --footer-background: #2e2c2c;
   --text-on-dark: #ffffff;
   --border-color: #dee2e6;
+  --icon-bg-1: #ffe4e9;
+  --icon-bg-2: #fde8e5;
+  --icon-bg-3: #ffe4ff;
+  --icon-bg-4: #e4f2ff;
+  --icon-bg-5: #e4ecff;
+  --icon-bg-6: #e4fff2;
 
   --font-family-sans: "Poppins", sans-serif;
   --font-weight-regular: 400;

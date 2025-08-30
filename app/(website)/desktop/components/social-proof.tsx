@@ -36,7 +36,7 @@ export default function SocialProof() {
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center text-center space-y-2">
               <div className="text-[var(--primary-red)] mb-1">{stat.icon}</div>
-              <h3 className="text-lg font-bold text-[var(--text-primary)] leading-tight">{stat.title}</h3>
+              <h3 className="text-lg font-bold text-[var(--text-foreground)] leading-tight">{stat.title}</h3>
               <p className="text-sm text-[var(--text-foreground)] leading-tight">{stat.description}</p>
             </div>
           ))}

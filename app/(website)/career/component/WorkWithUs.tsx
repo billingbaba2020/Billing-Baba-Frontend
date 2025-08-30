@@ -12,7 +12,7 @@ const WorkWithUs = () => {
           <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8">
             Join our teams and have the freedom to do your best work. We are building a culture with amazing people like you at its centre. Your work here will help millions of small businesses succeed & grow
           </p>
-          <button className="bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300">
+          <button className="bg-[var(--primary-red)] text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300">
             Check Open Positions
           </button>
         </div>

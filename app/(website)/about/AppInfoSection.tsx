@@ -6,7 +6,7 @@ const AppInfoSection = () => {
     <section className="font-sans ">
       {/* The padding has been adjusted for mobile devices. 
           It's now 4 on the sides for small screens and 10 for larger ones. */}
-      <div className="bg-gradient-to-b from-[#E53E3E] to-[#F15A44] py-4 px-4 sm:px-10">
+      <div className="bg-gradient-to-r from-[var(--primary-red)] to-[var(--accent-orange)] py-4 px-4 sm:px-10">
         {/* The padding has been adjusted for mobile devices. */}
         <div className="container mx-auto max-w-7xl px-4 sm:px-10">
           {/* The flex-col class ensures that the items stack on top of each other on mobile. 

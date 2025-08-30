@@ -7,23 +7,28 @@ import Image from "next/image";
 const stepsData = [
   {
     title: "Launch Billing Baba",
-    imageSrc: "/invoicing/steps/step1.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/08/Img_Launch-Vyapar.webp", // IMPORTANT: Image path
   },
   {
     title: "Enter Customer Details",
-    imageSrc: "/invoicing/steps/step2.png", // IMPORTANT: Image path
+    imageSrc:
+      "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20615%22%3E%3C/svg%3E", // IMPORTANT: Image path
   },
   {
     title: "Enter Product or Service Details",
-    imageSrc: "/invoicing/steps/step3.png", // IMPORTANT: Image path
+    imageSrc:
+      "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20614%22%3E%3C/svg%3E", // IMPORTANT: Image path
   },
   {
     title: "Customization",
-    imageSrc: "/invoicing/steps/step4.png", // IMPORTANT: Image path
+    imageSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/07/Create-Invoices.webp", // IMPORTANT: Image path
   },
   {
     title: "Save and Share",
-    imageSrc: "/invoicing/steps/step5.png", // IMPORTANT: Image path
+    imageSrc:
+      "data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201024%20615%22%3E%3C/svg%3E", // IMPORTANT: Image path
   },
 ];
 

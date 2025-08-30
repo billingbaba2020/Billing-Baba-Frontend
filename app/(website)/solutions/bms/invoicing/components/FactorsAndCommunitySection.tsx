@@ -16,37 +16,43 @@ const StarIcon = ({ colorClass = "text-yellow-400" }) => (
 const factorsData = [
   {
     title: "Estimates And Quotations",
-    iconSrc: "/invoicing/factors/estimates.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/03/Additional-Charges-for-packing-1.png",
     description:
       "Free invoicing software offers small businesses an option to save more time and get quotes instantly. Our invoicing application helps simplify estimates and quotations for customers.",
   },
   {
     title: "Expense Tracking",
-    iconSrc: "/invoicing/factors/expense.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/05/Expense-Tracking.png",
     description:
       "Our free invoicing app is an efficient way to manage expenses. Using the app, businesses can optimise their expenditure to save more money. It can help you prepare a strategy to maximise profits.",
   },
   {
     title: "Detailed Business Reports",
-    iconSrc: "/invoicing/factors/reports.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/05/Icon_Icons-User-Privilege-Security-copy-71.png",
     description:
       "You can create 57+ business reports using our free invoice tool for all your business requirements. Users can easily view and analyse the data instantly using our invoicing application.",
   },
   {
     title: "Business Dashboard",
-    iconSrc: "/invoicing/factors/dashboard.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/03/Accurate-and-dynamic-reports-1.png",
     description:
       "Empower your customers with a portal where they can view the dynamics of their business in one place. With the Billing Baba business dashboard, you can manage invoices, check estimates, and cash flow.",
   },
   {
     title: "Inventory Management",
-    iconSrc: "/invoicing/factors/inventory.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/03/Accurate-and-dynamic-reports-1.png",
     description:
       "Billing Baba app can track your business sales and manage your inventory. The business reports measure the effectiveness of your management. With an auto stock adjustment option, you can ensure that inventory items are always available.",
   },
   {
     title: "Barcode Scanner Compatibility",
-    iconSrc: "/invoicing/factors/barcode.png",
+    iconSrc:
+      "https://vyaparapp.in/v/z/wp-content/uploads/2024/05/Icon_Icons-User-Privilege-Security-copy-73.png",
     description:
       "Billing Baba's barcode features reduce the time and effort required in the invoicing process by retrieving product information. It eliminates the need to enter minute details about each item.",
   },
@@ -55,12 +61,22 @@ const factorsData = [
 const communityData = {
   platforms: [
     { name: "Google Play", iconSrc: "/icons/platforms/google-play.svg" },
-    { name: "G2", iconSrc: "/icons/platforms/g2.svg", rating: 5 },
-    { name: "Capterra", iconSrc: "/icons/platforms/capterra.svg" },
+    {
+      name: "G2",
+      iconSrc:
+        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/g2-pos.png",
+      rating: 5,
+    },
+    {
+      name: "Capterra",
+      iconSrc:
+        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/capterra-pos.png",
+    },
   ],
   reviews: [
     {
-      avatarSrc: "/invoicing/community/user1.png",
+      avatarSrc:
+        "https://vyaparapp.in/v/z/wp-content/uploads/2024/05/Icon_Icons-User-Privilege-Security-copy-73.png",
       name: "Taj Trading Co.",
       role: "Retailer",
       title: "Excellent",
@@ -70,7 +86,8 @@ const communityData = {
       starColor: "text-green-500",
     },
     {
-      avatarSrc: "/invoicing/community/user2.png",
+      avatarSrc:
+        "https://vyaparapp.in/v/z/wp-content/uploads/2024/03/Accurate-and-dynamic-reports-1.png",
       name: "Hema Srivastava",
       role: "Distributor",
       title: "Easy & Economical",

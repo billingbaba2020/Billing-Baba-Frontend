@@ -86,7 +86,8 @@ const industriesData = [
   {
     name: "Manufacturing",
     icon: <ManufacturingIcon />,
-    imageSrc: "/invoicing/industries/manufacturing.jpg",
+    imageSrc:
+      "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/invoicing-software/bs-manufacturing.webp?w=2048&q=75",
     description:
       "Manufacturing faces unique invoicing challenges. Complex projects with variable costs, materials tracking, and progress billing can lead to errors and delays. Billing Baba invoicing software tackles these issues by:",
     points: [
@@ -111,7 +112,8 @@ const industriesData = [
   {
     name: "Wholesale",
     icon: <WholesaleIcon />,
-    imageSrc: "/invoicing/industries/wholesale.jpg",
+    imageSrc:
+      "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/inventory-management-soft-revamp/wholesale-lg.webp?w=2048&q=75",
     description:
       "For wholesalers, managing large volumes of invoices and tracking payments is key. Our software helps by:",
     points: [

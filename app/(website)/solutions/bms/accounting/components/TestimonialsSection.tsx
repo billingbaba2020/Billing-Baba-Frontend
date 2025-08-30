@@ -17,13 +17,22 @@ const testimonialsData = {
   title: "Our Growing Community",
   platforms: [
     { name: "Google Play", iconSrc: "/icons/platforms/google-play.svg" },
-    { name: "G2", iconSrc: "/icons/platforms/g2.svg", rating: 5 },
-    { name: "Capterra", iconSrc: "/icons/platforms/capterra.svg" },
+    {
+      name: "G2",
+      iconSrc:
+        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/g2-pos.png",
+      rating: 5,
+    },
+    {
+      name: "Capterra",
+      iconSrc:
+        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/rev3.svg",
+    },
   ],
   reviews: [
     {
       avatarSrc:
-        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/rev2.svg", // IMPORTANT: Image path
+        "https://vyaparwebsiteimages.vypcdn.in/marketing-images/images/pos-billing-software-revamp/capterra-pos.png", // IMPORTANT: Image path
       name: "Kshirasagar Textiles",
       role: "Distributor",
       title: "Excellent Accounting System",

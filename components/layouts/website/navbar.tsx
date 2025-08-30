@@ -24,7 +24,7 @@ import {
   ArrowRight,
 } from "lucide-react"
 
-// Login Modal Component
+// ---------------- Login Modal ----------------
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
@@ -111,8 +111,7 @@ function LoginModal({ isOpen, onClose }: LoginModalProps) {
   )
 }
 
-
-// --- Main Header Component with Integrated Login Modal ---
+// ---------------- Header with Nav ----------------
 
 const colorClasses = {
   red: "bg-red-50 text-red-600",
@@ -130,15 +129,9 @@ interface SolutionIconProps {
   color: IconColor
 }
 
-const SolutionIcon = ({ icon, color }: SolutionIconProps) => {
-  return (
-    <div
-      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${colorClasses[color]}`}
-    >
-      {icon}
-    </div>
-  )
-}
+const SolutionIcon = ({ icon, color }: SolutionIconProps) => (
+  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${colorClasses[color]}`}>{icon}</div>
+)
 
 const solutionItems = {
   business: [
@@ -159,7 +152,6 @@ const solutionItems = {
   ],
 }
 
-// Note: "Login" is removed from this list as it's now a button.
 const baseNavLinks = [
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About Us" },
@@ -172,15 +164,12 @@ export default function HeaderWithLoginModal() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSolutionOpen, setIsSolutionOpen] = useState(false)
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-  
+
   const pathname = usePathname()
   const solutionRef = useRef<HTMLDivElement | null>(null)
 
   const isHomePage = pathname === "/"
-
-  const navLinks = isHomePage
-    ? baseNavLinks
-    : [{ href: "/", label: "Home" }, ...baseNavLinks]
+  const navLinks = isHomePage ? baseNavLinks : [{ href: "/", label: "Home" }, ...baseNavLinks]
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -192,7 +181,8 @@ export default function HeaderWithLoginModal() {
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [])
 
-  const linkClasses = "text-[var(--foreground)] transition-colors hover:text-gray-900 font-medium text-[15px] cursor-pointer"
+  const linkClasses =
+    "text-[var(--foreground)] transition-colors hover:text-gray-900 font-medium text-[15px] cursor-pointer"
 
   const closeAllMenus = () => {
     setIsMenuOpen(false)
@@ -203,17 +193,12 @@ export default function HeaderWithLoginModal() {
     <Fragment>
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-sm shadow-sm">
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
+          {/* Logo */}
           <Link href="/" onClick={closeAllMenus}>
-            <Image
-              src="/Logo1.png" // Replace with a valid logo path
-              alt="Vyapar Logo"
-              width={160}
-              height={48}
-              priority
-              className="h-20 w-auto"
-            />
+            <Image src="/Logo2.svg" alt="Vyapar Logo" width={160} height={48} priority className="h-12 w-auto" />
           </Link>
 
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#mobile-app" className={`flex items-center gap-1.5 ${linkClasses}`}>
               <Smartphone className="h-4 w-4" />
@@ -226,9 +211,7 @@ export default function HeaderWithLoginModal() {
                 className={`flex items-center gap-1.5 ${linkClasses}`}
               >
                 <span>Solution</span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform ${isSolutionOpen ? "rotate-180" : ""}`}
-                />
+                <ChevronDown className={`h-4 w-4 transition-transform ${isSolutionOpen ? "rotate-180" : ""}`} />
               </button>
 
               {isSolutionOpen && (
@@ -240,6 +223,7 @@ export default function HeaderWithLoginModal() {
                     <X size={18} />
                   </button>
                   <div className="flex gap-8">
+                    {/* Business */}
                     <div className="flex flex-col">
                       <h3 className="mb-3 font-semibold text-gray-900">Business Management Solutions</h3>
                       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
@@ -259,6 +243,7 @@ export default function HeaderWithLoginModal() {
 
                     <div className="w-px bg-gray-200"></div>
 
+                    {/* Industry */}
                     <div className="flex flex-col">
                       <h3 className="mb-3 font-semibold text-gray-900">Industry Solution</h3>
                       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
@@ -285,11 +270,13 @@ export default function HeaderWithLoginModal() {
                 {link.label}
               </Link>
             ))}
+
             <button onClick={() => setIsLoginModalOpen(true)} className={linkClasses}>
-                Login
+              Login
             </button>
           </nav>
 
+          {/* Mobile Toggle */}
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -298,6 +285,7 @@ export default function HeaderWithLoginModal() {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden animate-in fade-in slide-in-from-top-2 duration-300">
             <nav className="container flex flex-col gap-4 py-5 border-t">
@@ -305,19 +293,28 @@ export default function HeaderWithLoginModal() {
                 <Smartphone className="h-4 w-4" />
                 <span>Try mobile app</span>
               </a>
-              <Link href="/solutions" onClick={closeAllMenus} className={linkClasses}>Solution</Link>
+              <Link href="/solutions" onClick={closeAllMenus} className={linkClasses}>
+                Solution
+              </Link>
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} onClick={closeAllMenus} className={linkClasses}>
                   {link.label}
                 </Link>
               ))}
-               <button onClick={() => { closeAllMenus(); setIsLoginModalOpen(true); }} className={`text-left ${linkClasses}`}>
+              <button
+                onClick={() => {
+                  closeAllMenus()
+                  setIsLoginModalOpen(true)
+                }}
+                className={`text-left ${linkClasses}`}
+              >
                 Login
               </button>
             </nav>
           </div>
         )}
       </header>
+
       <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
     </Fragment>
   )

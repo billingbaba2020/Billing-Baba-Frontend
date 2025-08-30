@@ -205,12 +205,12 @@ export default function HeaderWithLoginModal() {
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
           <Link href="/" onClick={closeAllMenus}>
             <Image
-              src="/Logo2.svg" // Replace with a valid logo path
+              src="/Logo1.png" // Replace with a valid logo path
               alt="Vyapar Logo"
               width={160}
               height={48}
               priority
-              className="h-12 w-auto"
+              className="h-20 w-auto"
             />
           </Link>
 

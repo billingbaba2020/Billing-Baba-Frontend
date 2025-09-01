@@ -71,7 +71,7 @@ const GreatWorkplaces = () => {
                className="absolute top-[48%] left-[55%] -translate-x-1/2 z-20 cursor-pointer"
                onClick={() => setIsPlaying(true)}
              >
-               <div className=" w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+               <div className=" w-16 h-16 bg-[var(--primary-red)] rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
                  <PlayIcon />
                </div>
              </div>

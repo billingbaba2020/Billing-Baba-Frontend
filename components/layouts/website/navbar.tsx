@@ -143,12 +143,12 @@ const solutionItems = {
     { icon: <Computer size={16} />, name: "OCR", href: "/solutions/bms/ocr", color: "blue" as IconColor },
   ],
   industry: [
-    { icon: <Store size={16} />, name: "Retail", href: "/retail", color: "red" as IconColor },
-    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/pharmacy", color: "green" as IconColor },
-    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/grocery", color: "blue" as IconColor },
-    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/restaurant", color: "purple" as IconColor },
-    { icon: <Gem size={16} />, name: "Jewellery", href: "/jewellery", color: "orange" as IconColor },
-    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/clothing", color: "cyan" as IconColor },
+    { icon: <Store size={16} />, name: "Retail", href: "/solutions/is/retail", color: "red" as IconColor },
+    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/solutions/is/pharmacy", color: "green" as IconColor },
+    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/solutions/is/grocery", color: "blue" as IconColor },
+    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/solutions/is/restaurant", color: "purple" as IconColor },
+    { icon: <Gem size={16} />, name: "Jewellery", href: "/solutions/is/jewellery", color: "orange" as IconColor },
+    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/solutions/is/clothing", color: "cyan" as IconColor },
   ],
 }
 

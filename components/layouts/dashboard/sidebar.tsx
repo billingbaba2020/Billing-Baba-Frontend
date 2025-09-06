@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion"
 import { useWindowSize } from "@uidotdev/usehooks"
 import {
@@ -10,7 +10,6 @@ import {
   RefreshCw, Wrench, Settings, Award, ChevronDown, Plus, Send, ArrowRight, CirclePlus, Activity, ChevronUp, LucideIcon,
 } from "lucide-react"
 
-// --- TypeScript Type Definitions with 'path' ---
 interface SubItem {
   name: string;
   type: 'link' | 'action';
@@ -25,68 +24,58 @@ interface MenuItem {
   subItems?: SubItem[];
 }
 
-// --- Data for Menu Items with Routing Paths ---
 const menuItems: MenuItem[] = [
   { name: "Home", icon: Home, type: "link", path: "/dashboard/home" },
   {
-    name: "Parties", icon: Users, type: "dropdown", subItems: [
-      { name: "Party Details", type: "action", path: "/dashboard/party/details" },
-      { name: "Whatsapp Connect", type: "link", path: "/dashboard/party/whatsapp-connect" },
-      { name: "Billing Baba Network", type: "link", path: "/dashboard/party/network" },
+    name: "Parties", icon: Users, type: "dropdown", path: "/dashboard/parties", subItems: [
+      { name: "Party Details", type: "action", path: "/dashboard/parties?view=details" },
+      { name: "Whatsapp Connect", type: "link", path: "/dashboard/parties?view=whatsapp-connect" },
+      { name: "Billing Baba Network", type: "link", path: "/dashboard/parties?view=network" },
     ]
   },
   { name: "Items", icon: Package, type: "action", path: "/dashboard/items" },
   {
-    name: "Sale", icon: ReceiptText, type: "dropdown", subItems: [
-      { name: "Sale Invoices", type: "action", path: "/dashboard/sale/invoices" },
-      { name: "Estimate/ Quotation", type: "action", path: "/dashboard/sale/quotation" },
-      { name: "Proforma Invoice", type: "link", path: "/dashboard/sale/proforma-invoice" },
-      { name: "Payment-In", type: "action", path: "/dashboard/sale/payment-in" },
-      { name: "Sale Order", type: "link", path: "/dashboard/sale/order" },
-      { name: "Delivery Challan", type: "link", path: "/dashboard/sale/challan" },
-      { name: "Sale Return/ Credit Note", type: "action", path: "/dashboard/sale/return" },
-      { name: "Billing Baba POS", type: "link", path: "/dashboard/sale/pos" },
+    name: "Sale", icon: ReceiptText, type: "dropdown", path: "/dashboard/sales", subItems: [
+      { name: "Sale Invoices", type: "action", path: "/dashboard/sales?view=invoices" },
+      { name: "Estimate/ Quotation", type: "action", path: "/dashboard/sales?view=quotation" },
+      { name: "Proforma Invoice", type: "link", path: "/dashboard/sales?view=proforma" },
+      { name: "Payment-In", type: "action", path: "/dashboard/sales?view=payment-in" },
+      { name: "Sale Order", type: "link", path: "/dashboard/sales?view=order" },
+      { name: "Delivery Challan", type: "link", path: "/dashboard/sales?view=challan" },
+      { name: "Sale Return/ Credit Note", type: "action", path: "/dashboard/sales?view=return" },
+      { name: "Billing Baba POS", type: "link", path: "/dashboard/sales?view=pos" },
     ]
   },
   {
-    name: "Purchase & Expense", icon: ShoppingCart, type: "dropdown", subItems: [
-        { name: "Purchase Bills", type: "action", path: "/dashboard/purchase/bills" },
-        { name: "Payment-Out", type: "action", path: "/dashboard/purchase/payment-out" },
-        { name: "Expenses", type: "action", path: "/dashboard/purchase/expenses" },
-        { name: "Purchase Order", type: "link", path: "/dashboard/purchase/order" },
-        { name: "Purchase Return/ Dr. Note", type: "action", path: "/dashboard/purchase/return" },
+    name: "Purchase & Expense", icon: ShoppingCart, type: "dropdown", path: "/dashboard/purchases", subItems: [
+        { name: "Purchase Bills", type: "action", path: "/dashboard/purchases?view=bills" },
+        { name: "Payment-Out", type: "action", path: "/dashboard/purchases?view=payment-out" },
+        { name: "Expenses", type: "action", path: "/dashboard/purchases?view=expenses" },
+        { name: "Purchase Order", type: "link", path: "/dashboard/purchases?view=order" },
+        { name: "Purchase Return/ Dr. Note", type: "action", path: "/dashboard/purchases?view=return" },
     ]
   },
   {
-    name: "Grow Your Business", icon: TrendingUp, type: "dropdown", subItems: [
-        { name: "Marketing Tools", type: "link", path: "/dashboard/business/marketing" },
-        { name: "WhatsApp Marketing", type: "link", path: "/dashboard/business/whatsapp" },
-        { name: "Online Store", type: "link", path: "/dashboard/business/store" },
+    name: "Grow Your Business", icon: TrendingUp, type: "dropdown", path: "/dashboard/business", subItems: [
+        { name: "Marketing Tools", type: "link", path: "/dashboard/business/marketing-tools" },
+        { name: "WhatsApp Marketing", type: "link", path: "/dashboard/business/whatsapp-marketing" },
+        { name: "Online Store", type: "link", path: "/dashboard/business/online-store" },
+        { name: "Ads Manager", type: "link", path: "/dashboard/business/ads-manager" },
+        { name: "Business Horoscope", type: "link", path: "/dashboard/business/business-horoscope" },
+        { name: "Google Profile Manager", type: "link", path: "/dashboard/business/google-profile" },
     ]
   },
   {
-    name: "Cash & Bank", icon: Landmark, type: "dropdown", subItems: [
-        { name: "Bank Accounts", type: "action", path: "/dashboard/bank/accounts" },
-        { name: "Cash In Hand", type: "action", path: "/dashboard/bank/cash" },
-        { name: "Cheques", type: "link", path: "/dashboard/bank/cheques" },
-        { name: "Loan Accounts", type: "action", path: "/dashboard/bank/loans" },
+    name: "Cash & Bank", icon: Landmark, type: "dropdown", path: "/dashboard/bank", subItems: [
+        { name: "Bank Accounts", type: "action", path: "/dashboard/bank?view=accounts" },
+        { name: "Cash In Hand", type: "action", path: "/dashboard/bank?view=cash" },
+        { name: "Cheques", type: "link", path: "/dashboard/bank?view=cheques" },
+        { name: "Loan Accounts", type: "action", path: "/dashboard/bank?view=loans" },
     ]
   },
   { name: "Reports", icon: BarChart3, type: "link", path: "/dashboard/reports" },
-  {
-    name: "Sync, Share & Backup", icon: RefreshCw, type: "dropdown", subItems: [
-        { name: "Sync & Share", type: "link", path: "/dashboard/sync/share" },
-        { name: "Auto Backup", type: "link", path: "/dashboard/sync/backup" },
-    ]
-  },
-  {
-    name: "Utilities", icon: Wrench, type: "dropdown", subItems: [
-        { name: "Import Items", type: "link", path: "/dashboard/utils/import-items" },
-        { name: "Barcode Generator", type: "link", path: "/dashboard/utils/barcode" },
-    ]
-  },
-  { name: "Settings", icon: Settings, type: "link", path: "/dashboard/settings" },
-  { name: "Plans & Pricing", icon: Award, type: "link", path: "/pricing" }, // This might be outside dashboard
+  { name: "Settings", icon: Settings, type: "link", path: "/dashboard/setting" },
+  { name: "Plans & Pricing", icon: Award, type: "link", path: "/dashboard/plan-and-pricing" },
 ]
 
 interface SidebarProps {
@@ -95,18 +84,22 @@ interface SidebarProps {
 
 export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentView = searchParams.get('view');
+  
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const size = useWindowSize();
   const isMobile = size.width ? size.width < 768 : false;
 
-  // Effect to automatically open dropdown if a child route is active
   useEffect(() => {
     const activeParent = menuItems.find(item => 
-      item.subItems?.some(sub => pathname.startsWith(sub.path))
+      item.path && pathname.startsWith(item.path) && item.subItems
     );
     if (activeParent) {
       setOpenDropdown(activeParent.name);
+    } else {
+      setOpenDropdown(null);
     }
   }, [pathname]);
 
@@ -145,8 +138,13 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
         <nav className="flex-grow px-3 overflow-y-auto thin-scrollbar">
           <ul>
             {menuItems.map((item) => {
-              const isAnySubItemActive = item.subItems ? item.subItems.some(sub => pathname.startsWith(sub.path)) : false;
-              const isActive = (item.path && pathname.startsWith(item.path)) || isAnySubItemActive;
+              const isAnySubItemActive = item.subItems ? item.subItems.some(sub => {
+                  const [path, query] = sub.path.split('?');
+                  const viewParam = new URLSearchParams(query || '').get('view');
+                  return pathname === path && currentView === viewParam;
+              }) : false;
+              
+              const isActive = (item.path && pathname.startsWith(item.path) && !item.subItems) || isAnySubItemActive;
 
               return (
                 <React.Fragment key={item.name}>
@@ -177,7 +175,7 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
                     
                     {!showText && <div className="absolute left-full ml-3 hidden items-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold text-white opacity-0 group-hover:flex group-hover:opacity-100 transition-opacity duration-200">{item.name}</div>}
 
-                    {isActive && !isAnySubItemActive && (
+                    {isActive && (
                       <motion.div layoutId="active-indicator" className="absolute inset-0 rounded-lg bg-blue-50 -z-10" transition={{ type: "spring", stiffness: 300, damping: 25 }}/>
                     )}
                   </li>
@@ -186,15 +184,16 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
                     {showText && item.type === 'dropdown' && openDropdown === item.name && (
                          <motion.ul initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden pl-8">
                             {item.subItems?.map(subItem => {
-                              const isSubActive = pathname.startsWith(subItem.path);
+                              const [path, query] = subItem.path.split('?');
+                              const viewParam = new URLSearchParams(query || '').get('view');
+                              const isSubActive = pathname === path && currentView === viewParam;
                               return (
                                 <li key={subItem.name} className="relative py-2">
                                     <Link href={subItem.path} className={`flex items-center justify-between text-sm hover:text-gray-900 transition-colors ${isSubActive ? 'text-blue-600 font-medium' : 'text-gray-500'}`}>
                                         <span>{subItem.name}</span>
                                         {subItem.type === 'action' && <Plus className="h-4 w-4" />}
                                     </Link>
-                                    {isSubActive && <motion.div className="absolute left-[-24px] top-0 h-full w-[3px] bg-red-500 rounded-r-full" layoutId="active-subitem-indicator" />}
-                                    {isSubActive && <motion.div className="absolute inset-0 bg-blue-50 -z-10 ml-[-24px]" layoutId="active-subitem-bg" />}
+                                    {isSubActive && <motion.div className="absolute left-[-24px] top-0 h-full w-[3px] bg-blue-500 rounded-r-full" layoutId="active-subitem-indicator" />}
                                 </li>
                               )
                             })}

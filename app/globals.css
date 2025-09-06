@@ -247,3 +247,18 @@
     scrollbar-width: none;
   }
 }
+
+.dropdown-text-fix:hover{
+  color:var(--primary-red) !important;
+}
+
+[data-radix-select-viewport] [data-state="checked"],
+[data-radix-select-viewport] [data-highlighted] {
+  background-color: var(--primary-red) !important; /* your red */
+  color: white !important; /* text contrast */
+}
+
+[data-radix-select-viewport] [data-highlighted] {
+  background-color: var(--secondary-blue) !important; /* hover color */
+  color: var(--text-on-dark) !important;
+}

@@ -12,35 +12,35 @@ import AccountPage from '../component/AccountPage';
 const mockData = {
     forYou: {
         '5': [
-            { img: "/placeholder-image.png", title: "Teachers' Day" },
-            { img: "/placeholder-image.png", title: "Teachers' Day 2" },
+            { img: "/marketing/teacheresday1.jpeg", title: "Teachers' Day" },
+            { img: "/marketing/teacheresday2.jpeg", title: "Teachers' Day 2" },
         ],
         '10': [
-            { img: "/placeholder-image.png", title: "Ganesh Chaturthi" },
-            { img: "/placeholder-image.png", title: "Ganesh Chaturthi Offer" },
-            { img: "/placeholder-image.png", title: "Happy Ganesh" },
+            { img: "/marketing/festive1.jpg", title: "Ganesh Chaturthi" },
+            { img: "/marketing/festive2.jpg", title: "Ganesh Chaturthi Offer" },
+            { img: "/marketing/festive3.webp", title: "Happy Ganesh" },
         ],
         '11': [
-            { img: "/placeholder-image.png", title: "Onam Special" },
-            { img: "/placeholder-image.png", title: "Happy Onam" },
+            { img: "/marketing/onam1.webp", title: "Onam Special" },
+            { img: "/marketing/onam2.jpeg", title: "Happy Onam" },
         ],
         'default': [ 
-             { img: "/placeholder-image.png", title: "Nutrition Week" },
-             { img: "/placeholder-image.png", title: "Mother Teresa" },
+             { img: "/marketing/nutrition.jpg", title: "Nutrition Week" },
+             { img: "/marketing/Mother-Teresa.webp", title: "Mother Teresa" },
         ]
     },
     festivals: {
-        '5': [ { img: "/placeholder-image.png", title: "Teachers' Day Greeting" } ],
-        '10': [ { img: "/placeholder-image.png", title: "Ganesh Chaturthi Main" } ],
-        '11': [ { img: "/placeholder-image.png", title: "Onam Festival" } ],
+        '5': [ { img: "/marketing/teacheresday1.jpeg", title: "Teachers' Day Greeting" } ],
+        '10': [ { img: "/marketing/festive1.jpeg", title: "Ganesh Chaturthi Main" } ],
+        '11': [ { img: "/marketing/onam2.jpeg", title: "Onam Festival" } ],
     },
     business: [
-        { title: "My Business", icon: Building, templates: [ { img: "/placeholder-image.png", isVideo: true }, { img: "/placeholder-image.png", isVideo: true }, { img: "/placeholder-image.png", isVideo: true } ] },
-        { title: "Motivation", icon: Sparkles, templates: [ { img: "/placeholder-image.png" }, { img: "/placeholder-image.png" }, { img: "/placeholder-image.png", isVideo: true } ] }
+        { title: "My Business", icon: Building, templates: [ { img: "/marketing/business1.jpg", isVideo: true }, { img: "/marketing/business2.jpeg", isVideo: true }, { img: "/marketing/business1.jpg", isVideo: true } ] },
+        { title: "Motivation", icon: Sparkles, templates: [ { img: "/marketing/motivation1.jpeg" }, { img: "/marketing/motivation2.webp" }, { img: "/marketing/motivation3.webp", isVideo: true } ] }
     ],
     product: [
-        { title: "Ganesh Chaturthi Offers", icon: Star, templates: [ { img: "/placeholder-image.png" }, { img: "/placeholder-image.png" }, { img: "/placeholder-image.png" } ] },
-        { title: "Product Promotion", icon: Star, templates: [ { img: "/placeholder-image.png" }, { img: "/placeholder-image.png" }, { img: "/placeholder-image.png" } ] }
+        { title: "Ganesh Chaturthi Offers", icon: Star, templates: [ { img: "/marketing/festive1.jpeg" }, { img: "/marketing/festive2.jpeg" }, { img: "/marketing/festive3.webp" } ] },
+        { title: "Product Promotion", icon: Star, templates: [ { img: "/marketing/oppo1.png" }, { img: "/marketing/oppo2.png" }, { img: "/marketing/oppo3.jpeg" } ] }
     ]
 };
 const festivalDates = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 22].map(day => ({ day, month: 'Sep' }));

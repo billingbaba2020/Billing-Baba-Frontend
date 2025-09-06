@@ -8,6 +8,7 @@ import { useWindowSize } from "@uidotdev/usehooks"
 import {
   Home, Users, Package, ReceiptText, ShoppingCart, TrendingUp, Landmark, BarChart3,
   RefreshCw, Wrench, Settings, Award, ChevronDown, Plus, Send, ArrowRight, CirclePlus, Activity, ChevronUp, LucideIcon,
+  RotateCcw, Share2, HardDrive, Download, Upload, Database
 } from "lucide-react"
 
 interface SubItem {
@@ -65,15 +66,32 @@ const menuItems: MenuItem[] = [
         { name: "Google Profile Manager", type: "link", path: "/dashboard/business/google-profile" },
     ]
   },
+  // {
+  //   name: "Cash & Bank", icon: Landmark, type: "dropdown", path: "/dashboard/bank", subItems: [
+  //       { name: "Bank Accounts", type: "action", path: "/dashboard/bank?view=accounts" },
+  //       { name: "Cash In Hand", type: "action", path: "/dashboard/bank?view=cash" },
+  //       { name: "Cheques", type: "link", path: "/dashboard/bank?view=cheques" },
+  //       { name: "Loan Accounts", type: "action", path: "/dashboard/bank?view=loans" },
+  //   ]
+  // },
   {
-    name: "Cash & Bank", icon: Landmark, type: "dropdown", path: "/dashboard/bank", subItems: [
-        { name: "Bank Accounts", type: "action", path: "/dashboard/bank?view=accounts" },
-        { name: "Cash In Hand", type: "action", path: "/dashboard/bank?view=cash" },
-        { name: "Cheques", type: "link", path: "/dashboard/bank?view=cheques" },
-        { name: "Loan Accounts", type: "action", path: "/dashboard/bank?view=loans" },
+    name: "Cash & Bank", icon: Landmark, type: "dropdown", path: "/dashboard/cash-bank", subItems: [
+      { name: "Bank Accounts", type: "link", path: "/dashboard/cash-bank/bank-accounts" },
+      { name: "Cash In Hand", type: "link", path: "/dashboard/cash-bank/cash-inhand" },
+      { name: "Cheques", type: "link", path: "/dashboard/cash-bank/cheques" },
+      { name: "Loan Accounts", type: "link", path: "/dashboard/cash-bank/loan-account" },
     ]
   },
   { name: "Reports", icon: BarChart3, type: "link", path: "/dashboard/reports" },
+  {
+    name: "Sync, Share & Backup", icon: RotateCcw, type: "dropdown", path: "/dashboard/sync-share-backup", subItems: [
+      { name: "Sync & Share", type: "action", path: "/dashboard/sync-share-backup?view=sync-share" },
+      { name: "Auto Backup", type: "action", path: "/dashboard/sync-share-backup?view=auto-backup" },
+      { name: "Backup To Computer", type: "action", path: "/dashboard/sync-share-backup?view=backup-computer" },
+      { name: "Backup To Drive", type: "action", path: "/dashboard/sync-share-backup?view=backup-drive" },
+      { name: "Restore Backup", type: "action", path: "/dashboard/sync-share-backup?view=restore-backup" },
+    ]
+  },
   { name: "Settings", icon: Settings, type: "link", path: "/dashboard/setting" },
   { name: "Plans & Pricing", icon: Award, type: "link", path: "/dashboard/plan-and-pricing" },
 ]
@@ -189,9 +207,8 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
                               const isSubActive = pathname === path && currentView === viewParam;
                               return (
                                 <li key={subItem.name} className="relative py-2">
-                                    <Link href={subItem.path} className={`flex items-center justify-between text-sm hover:text-gray-900 transition-colors ${isSubActive ? 'text-blue-600 font-medium' : 'text-gray-500'}`}>
+                                    <Link href={subItem.path} className={`flex items-center text-sm hover:text-gray-900 transition-colors ${isSubActive ? 'text-blue-600 font-medium' : 'text-gray-500'}`}>
                                         <span>{subItem.name}</span>
-                                        {subItem.type === 'action' && <Plus className="h-4 w-4" />}
                                     </Link>
                                     {isSubActive && <motion.div className="absolute left-[-24px] top-0 h-full w-[3px] bg-blue-500 rounded-r-full" layoutId="active-subitem-indicator" />}
                                 </li>

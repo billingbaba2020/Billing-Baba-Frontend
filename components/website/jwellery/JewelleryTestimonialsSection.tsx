@@ -1,8 +1,6 @@
 // Example file path: src/components/jewellery-page/JewelleryTestimonialsSection.tsx
 
 import React from "react";
-
-// --- Type Definitions for TypeScript ---
 interface Testimonial {
   name: string;
   quote: string;
@@ -10,7 +8,6 @@ interface Testimonial {
   rating: number;
 }
 
-// --- Data for the Component, transcribed from your image ---
 const testimonialsData: Testimonial[] = [
   {
     name: "Gaurav R.",
@@ -54,7 +51,6 @@ const StarRating: React.FC<{ count: number }> = ({ count }) => (
   </div>
 );
 
-// Helper component for individual testimonial cards
 const TestimonialCard: React.FC<Testimonial> = ({
   name,
   quote,

@@ -1,4 +1,4 @@
-"use client"; // ===== YEH LINE ADD KARNA ZAROORI HAI =====
+"use client";
 
 import Link from "next/link";
 import {
@@ -16,18 +16,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Image from "next/image";
 
 export default function SaleInvoicesPage() {
   return (
     <div className="flex flex-col h-full space-y-6 bg-white p-6 rounded-lg">
-      {/* Page Header */}
       <header className="flex justify-between items-center pb-4 border-b">
         <div>
           <h1 className="text-2xl font-bold text-gray-800">Sale Invoices</h1>
         </div>
         <div className="flex items-center gap-4">
           <Link href="/dashboard/sales/add">
-            <Button className="bg-primary-red hover:bg-red-700 text-white font-semibold">
+            <Button className="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded">
               <Plus className="w-4 h-4 mr-2" /> Add Sale
             </Button>
           </Link>
@@ -89,12 +89,12 @@ export default function SaleInvoicesPage() {
         </div>
       </div>
 
-      {/* Empty State */}
       <div className="flex-1 flex flex-col items-center justify-center bg-white border-none rounded-lg mt-4">
-        <img
-          src="https://i.imgur.com/g0t4mJk.png"
-          alt="No Data"
-          className="w-36 h-36 opacity-80"
+        <Image
+          src="https://cdni.iconscout.com/illustration/premium/thumb/no-transaction-illustration-svg-png-download-6024630.png"
+          alt="No Transactions"
+          width={160}
+          height={160}
         />
         <h2 className="text-lg font-semibold text-gray-800 mt-4">
           No Transactions to show
@@ -102,9 +102,9 @@ export default function SaleInvoicesPage() {
         <p className="text-sm text-gray-500 mt-1">
           You haven't added any transactions yet.
         </p>
-        <Link href="/dashboard/sales/add">
-          <Button className="bg-primary-red hover:bg-red-700 text-white mt-6 font-semibold px-6 py-3">
-            <Plus className="w-4 h-4 mr-2" /> Add Sale
+        <Link href="/dashboard/reports/sale/add">
+          <Button className="bg-red-600 hover:bg-red-700 text-white mt-6 font-semibold px-6 py-3 rounded-full text-base">
+            <Plus className="w-5 h-5 mr-2" /> Add Sale
           </Button>
         </Link>
       </div>

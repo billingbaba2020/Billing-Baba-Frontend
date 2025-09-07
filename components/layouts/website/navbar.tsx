@@ -6,22 +6,9 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import {
-  Menu,
-  X,
-  Smartphone,
-  ChevronDown,
-  Receipt,
-  Warehouse,
-  FileText,
-  Scan,
-  Store,
-  Computer,
-  HeartPulse,
-  ShoppingBasket,
-  UtensilsCrossed,
-  Gem,
-  Shirt,
-  ArrowRight,
+  Menu, X, Smartphone, ChevronDown,
+  Receipt, Warehouse, FileText, Scan, Store, Computer,
+  HeartPulse, ShoppingBasket, UtensilsCrossed, Gem, Shirt, ArrowRight,
 } from "lucide-react"
 
 // ---------------- Login Modal ----------------
@@ -33,14 +20,10 @@ interface LoginModalProps {
 function LoginModal({ isOpen, onClose }: LoginModalProps) {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose()
-      }
+      if (event.key === "Escape") onClose()
     }
     window.addEventListener("keydown", handleEsc)
-    return () => {
-      window.removeEventListener("keydown", handleEsc)
-    }
+    return () => window.removeEventListener("keydown", handleEsc)
   }, [onClose])
 
   if (!isOpen) return null
@@ -73,8 +56,8 @@ function LoginModal({ isOpen, onClose }: LoginModalProps) {
           </div>
 
           <form className="flex flex-col gap-5">
-            <div className="flex items-center border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent">
-              <div className="flex select-none cursor-pointer items-center gap-2 p-3 border-r border-gray-300 text-gray-600">
+            <div className="flex items-center border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-blue-500">
+              <div className="flex select-none items-center gap-2 p-3 border-r border-gray-300 text-gray-600">
                 <span>🇮🇳</span>
                 <span>+91</span>
               </div>
@@ -112,7 +95,6 @@ function LoginModal({ isOpen, onClose }: LoginModalProps) {
 }
 
 // ---------------- Header with Nav ----------------
-
 const colorClasses = {
   red: "bg-red-50 text-red-600",
   green: "bg-green-50 text-green-600",
@@ -124,31 +106,26 @@ const colorClasses = {
 
 type IconColor = keyof typeof colorClasses
 
-interface SolutionIconProps {
-  icon: ReactNode
-  color: IconColor
-}
-
-const SolutionIcon = ({ icon, color }: SolutionIconProps) => (
-  <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${colorClasses[color]}`}>{icon}</div>
+const SolutionIcon = ({ icon, color }: { icon: ReactNode; color: IconColor }) => (
+  <div className={`flex h-8 w-8 items-center justify-center rounded-md ${colorClasses[color]}`}>{icon}</div>
 )
 
 const solutionItems = {
   business: [
-    { icon: <Receipt size={16} />, name: "Accounting", href: "/solutions/bms/accounting", color: "red" as IconColor },
-    { icon: <Warehouse size={16} />, name: "Inventory", href: "/solutions/bms/inventory", color: "green" as IconColor },
-    { icon: <FileText size={16} />, name: "Invoicing", href: "/solutions/bms/invoicing", color: "purple" as IconColor },
-    { icon: <Scan size={16} />, name: "E-Invoice", href: "/solutions/bms/einvoice", color: "cyan" as IconColor },
-    { icon: <Store size={16} />, name: "POS", href: "/solutions/bms/ios", color: "orange" as IconColor },
-    { icon: <Computer size={16} />, name: "OCR", href: "/solutions/bms/ocr", color: "blue" as IconColor },
+    { icon: <Receipt size={16} />, name: "Accounting", href: "/solutions/bms/accounting", color: "red" },
+    { icon: <Warehouse size={16} />, name: "Inventory", href: "/solutions/bms/inventory", color: "green" },
+    { icon: <FileText size={16} />, name: "Invoicing", href: "/solutions/bms/invoicing", color: "purple" },
+    { icon: <Scan size={16} />, name: "E-Invoice", href: "/solutions/bms/einvoice", color: "cyan" },
+    { icon: <Store size={16} />, name: "POS", href: "/solutions/bms/pos", color: "orange" },
+    { icon: <Computer size={16} />, name: "OCR", href: "/solutions/bms/ocr", color: "blue" },
   ],
   industry: [
-    { icon: <Store size={16} />, name: "Retail", href: "/retail", color: "red" as IconColor },
-    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/pharmacy", color: "green" as IconColor },
-    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/grocery", color: "blue" as IconColor },
-    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/restaurant", color: "purple" as IconColor },
-    { icon: <Gem size={16} />, name: "Jewellery", href: "/jewellery", color: "orange" as IconColor },
-    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/clothing", color: "cyan" as IconColor },
+    { icon: <Store size={16} />, name: "Retail", href: "/solutions/is/retail", color: "red" }, // 🔹 merged from rahul-cmtai
+    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/solutions/is/pharmacy", color: "green" }, // 🔹 merged
+    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/grocery", color: "blue" },
+    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/restaurant", color: "purple" },
+    { icon: <Gem size={16} />, name: "Jewellery", href: "/jewellery", color: "orange" },
+    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/clothing", color: "cyan" },
   ],
 }
 
@@ -195,7 +172,7 @@ export default function HeaderWithLoginModal() {
         <div className="container mx-auto flex h-20 items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" onClick={closeAllMenus}>
-            <Image src="/Logo2.svg" alt="Vyapar Logo" width={160} height={48} priority className="h-12 w-auto" />
+            <Image src="/Logo2.svg" alt="Billing Baba Logo" width={160} height={48} priority className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -205,12 +182,13 @@ export default function HeaderWithLoginModal() {
               <span>Try mobile app</span>
             </a>
 
+            {/* Solutions dropdown */}
             <div className="relative" ref={solutionRef}>
               <button
                 onClick={() => setIsSolutionOpen(!isSolutionOpen)}
                 className={`flex items-center gap-1.5 ${linkClasses}`}
               >
-                <span>Solution</span>
+                <span>Solutions</span>
                 <ChevronDown className={`h-4 w-4 transition-transform ${isSolutionOpen ? "rotate-180" : ""}`} />
               </button>
 
@@ -234,7 +212,7 @@ export default function HeaderWithLoginModal() {
                             onClick={closeAllMenus}
                             className="flex items-center gap-3 rounded-md p-1 -m-1 transition-colors hover:bg-gray-50"
                           >
-                            <SolutionIcon icon={item.icon} color={item.color} />
+                            <SolutionIcon icon={item.icon} color={item.color as IconColor} />
                             <span className="text-sm font-medium text-gray-700">{item.name}</span>
                           </Link>
                         ))}
@@ -245,7 +223,7 @@ export default function HeaderWithLoginModal() {
 
                     {/* Industry */}
                     <div className="flex flex-col">
-                      <h3 className="mb-3 font-semibold text-gray-900">Industry Solution</h3>
+                      <h3 className="mb-3 font-semibold text-gray-900">Industry Solutions</h3>
                       <div className="grid grid-cols-2 gap-x-8 gap-y-3">
                         {solutionItems.industry.map((item) => (
                           <Link
@@ -254,7 +232,7 @@ export default function HeaderWithLoginModal() {
                             onClick={closeAllMenus}
                             className="flex items-center gap-3 rounded-md p-1 -m-1 transition-colors hover:bg-gray-50"
                           >
-                            <SolutionIcon icon={item.icon} color={item.color} />
+                            <SolutionIcon icon={item.icon} color={item.color as IconColor} />
                             <span className="text-sm font-medium text-gray-700">{item.name}</span>
                           </Link>
                         ))}
@@ -294,7 +272,7 @@ export default function HeaderWithLoginModal() {
                 <span>Try mobile app</span>
               </a>
               <Link href="/solutions" onClick={closeAllMenus} className={linkClasses}>
-                Solution
+                Solutions
               </Link>
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} onClick={closeAllMenus} className={linkClasses}>

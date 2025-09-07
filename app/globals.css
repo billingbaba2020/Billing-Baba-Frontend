@@ -115,6 +115,95 @@
   --sidebar-ring: oklch(0.55 0.15 258);
 }
 
+/* Custom animations for retail features component */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-up-delay {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-1500 {
+  animation-delay: 1.5s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+.delay-2500 {
+  animation-delay: 2.5s;
+}
+
+
 @theme inline {
   --font-sans: "Poppins", sans-serif;
   --font-mono: var(--font-geist-mono);

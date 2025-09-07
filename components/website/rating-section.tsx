@@ -8,7 +8,7 @@ export default function RatingSection() {
   const [hover, setHover] = useState(0)
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-16 bg-background">
       <div className="container flex flex-col items-center justify-center text-center space-y-6">
         <div className="space-y-2">
           <h2 className="text-4xl font-bold text-foreground">How Useful Was This Post?</h2>

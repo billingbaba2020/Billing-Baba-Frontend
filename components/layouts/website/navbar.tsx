@@ -120,14 +120,15 @@ const solutionItems = {
     { icon: <Computer size={16} />, name: "OCR", href: "/solutions/bms/ocr", color: "blue" },
   ],
   industry: [
-    { icon: <Store size={16} />, name: "Retail", href: "/solutions/is/retail", color: "red" }, // 🔹 merged from rahul-cmtai
-    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/solutions/is/pharmacy", color: "green" }, // 🔹 merged
-    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/grocery", color: "blue" },
-    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/restaurant", color: "purple" },
-    { icon: <Gem size={16} />, name: "Jewellery", href: "/jewellery", color: "orange" },
-    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/clothing", color: "cyan" },
+    { icon: <Store size={16} />, name: "Retail", href: "/solutions/is/retail", color: "red" },
+    { icon: <HeartPulse size={16} />, name: "Pharmacy", href: "/solutions/is/pharmacy", color: "green" },
+    { icon: <ShoppingBasket size={16} />, name: "Grocery", href: "/solutions/is/grocery", color: "blue" },
+    { icon: <UtensilsCrossed size={16} />, name: "Restaurant", href: "/solutions/is/restaurant", color: "purple" },
+    { icon: <Gem size={16} />, name: "Jewellery", href: "/solutions/is/jewellery", color: "orange" },
+    { icon: <Shirt size={16} />, name: "Clothing/Apparel", href: "/solutions/is/clothing", color: "cyan" },
   ],
 }
+
 
 const baseNavLinks = [
   { href: "/pricing", label: "Pricing" },

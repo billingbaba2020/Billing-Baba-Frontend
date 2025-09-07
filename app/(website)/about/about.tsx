@@ -9,15 +9,24 @@ import TechnologySection from "./TechnologySection";
 
 export default function AboutPage() {
     return (
-        <div>
-            <AboutHero />
-            <AccountingSoftwareSection />
-            <TechnologySection />
-            <BusinessInfoSection />
-            <AppInfoSection />
-            <EffortlessBusinessSection />
-            <RecognitionSection />
-            <RatingSection />
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+            <div className="container mx-auto px-4 py-12">
+                <div className="max-w-7xl mx-auto">
+                    {/* Hero Section */}
+                    <AboutHero />
+
+                    {/* Core Sections */}
+                    <AccountingSoftwareSection />
+                    <TechnologySection />
+                    <BusinessInfoSection />
+                    <AppInfoSection />
+                    <EffortlessBusinessSection />
+                    <RecognitionSection />
+
+                    {/* Ratings / Testimonials */}
+                    <RatingSection />
+                </div>
+            </div>
         </div>
-    )
+    );
 }

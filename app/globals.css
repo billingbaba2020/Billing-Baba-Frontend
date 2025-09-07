@@ -44,15 +44,23 @@
   --text-secondary: #787878;
   --text-headings-alt: var(--primary-red);
   --text-link-active: #3b82f6;
+  --secondary-blue: #70A6E8;
   --accent-orange: #f97316;
   --background-light: #ffffff;
   --background-section-gray: #fafafa;
   --background-feature-card: #f8faff;
+  --background-beyond-billing: #f7fcff;
   --background-faq-accent: #ffe6eb;
   --background-comparison-section: #fff5f6;
   --footer-background: #2e2c2c;
   --text-on-dark: #ffffff;
   --border-color: #dee2e6;
+  --icon-bg-1: #ffe4e9;
+  --icon-bg-2: #fde8e5;
+  --icon-bg-3: #ffe4ff;
+  --icon-bg-4: #e4f2ff;
+  --icon-bg-5: #e4ecff;
+  --icon-bg-6: #e4fff2;
 
   --font-family-sans: "Poppins", sans-serif;
   --font-weight-regular: 400;
@@ -63,6 +71,13 @@
   --h1-font-size: 54px;
   --h2-font-size: 44px;
   --h4-font-size: 18px;
+
+  /* New variables for settings page */
+  --settings-sidebar-bg: #2d3748; /* A dark blue-gray */
+  --settings-sidebar-text: #e2e8f0; /* Lighter gray for text */
+  --settings-sidebar-active-bg: #ffffff;
+  --settings-sidebar-active-text: #1a202c;
+  --settings-content-bg: #f7fafc;
 }
 
 .dark {
@@ -99,6 +114,95 @@
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.55 0.15 258);
 }
+
+/* Custom animations for retail features component */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+  }
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-up-delay {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay {
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
+
+.delay-1500 {
+  animation-delay: 1.5s;
+}
+
+.delay-2000 {
+  animation-delay: 2s;
+}
+
+.delay-2500 {
+  animation-delay: 2.5s;
+}
+
 
 @theme inline {
   --font-sans: "Poppins", sans-serif;
@@ -238,4 +342,58 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+.dropdown-text-fix:hover{
+  color:var(--primary-red) !important;
+}
+
+[data-radix-select-viewport] [data-state="checked"],
+[data-radix-select-viewport] [data-highlighted] {
+  background-color: var(--primary-red) !important; /* your red */
+  color: white !important; /* text contrast */
+}
+
+[data-radix-select-viewport] [data-highlighted] {
+  background-color: var(--secondary-blue) !important; /* hover color */
+  color: var(--text-on-dark) !important;
+}
+
+/* Custom styles for range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e5e7eb; /* Light gray track */
+  border-radius: 5px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--text-link-active); /* Blue thumb */
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--text-link-active);
+  cursor: pointer;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }

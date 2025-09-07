@@ -1,11 +1,10 @@
-'use client'; // Necesario para usar hooks de React como useState
+'use client'; // Required for React hooks
 
 import type { NextPage } from 'next';
 import React, { useState } from 'react';
 import { YouTubePlayerDialog } from '../component/YouTubePlayerDialog';
 
-// --- Iconos en formato de componentes de React para facilitar su uso ---
-
+// --- Icons ---
 const CalendarIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -16,13 +15,12 @@ const CalendarIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 );
 
 const PlayIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-    </svg>
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+  </svg>
 );
 
-// --- Sub-componentes para cada tarjeta ---
-
+// --- Restart Transaction Numbers ---
 const RestartTransactionNumbers = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const transactionTypes = [
@@ -85,6 +83,7 @@ const RestartTransactionNumbers = () => {
   );
 };
 
+// --- Backup and Start Fresh ---
 const BackupAndStartFresh = () => {
   return (
     <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm h-fit">
@@ -112,62 +111,60 @@ const BackupAndStartFresh = () => {
   );
 };
 
+// --- Video Tutorial ---
 const VideoTutorial = () => {
-    const [language, setLanguage] = useState('Hindi');
-    const videoIds = {
-      Hindi: 'dQw4w9WgXcQ', // Ejemplo: Rick Astley
-      English: 'xvFZjo5PgG0', // Ejemplo: Official English video
+  const [language, setLanguage] = useState('Hindi');
+  const videoIds = {
+    Hindi: 'dQw4w9WgXcQ',
+    English: 'xvFZjo5PgG0',
   };
 
-    return (
-        <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
-            <h2 className="font-semibold text-gray-800 text-lg mb-4">Watch how to do Close Books in Vyapar.</h2>
-            <div className="flex items-center gap-3 mb-4">
-                <span className="text-sm text-gray-600">Watch this Video in:</span>
-                <div className="flex gap-2">
-                    <button
-                        onClick={() => setLanguage('Hindi')}
-                        className={`py-1 px-5 rounded-md text-sm border transition-all ${language === 'Hindi' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-500 hover:bg-blue-50'}`}
-                    >
-                        Hindi
-                    </button>
-                    <button
-                        onClick={() => setLanguage('English')}
-                         className={`py-1 px-5 rounded-md text-sm border transition-all ${language === 'English' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-500 hover:bg-blue-50'}`}
-                    >
-                        English
-                    </button>
-                </div>
-            </div>
-            
-            {/* Contenedor del video */}
-            <YouTubePlayerDialog videoId={videoIds[language as keyof typeof videoIds]}>
-                <div className="relative cursor-pointer group w-full aspect-video bg-red-600 rounded-lg flex flex-col justify-between p-4 text-white overflow-hidden">
-                    <div className="z-10">
-                        <h3 className="font-bold text-xl">Close Book karein</h3>
-                        <h4 className="font-bold text-2xl">Financial Year 2023...</h4>
-                        <h3 className="font-bold text-xl">Vyapar se</h3>
-                    </div>
-                    <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                        <div className="bg-red-500 bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <PlayIcon />
-                        </div>
-                    </div>
-                    <div className="z-10 text-right">
-                        <p className="text-xs">1 minute me karein</p>
-                        <p className="text-xs">financial year close</p>
-                        <p className="text-xs">({language})</p>
-                    </div>
-                    <div className="absolute bottom-4 left-4 z-10 font-bold text-2xl">Vyapar</div>
-                </div>
-            </YouTubePlayerDialog>
+  return (
+    <div className="border border-gray-200 rounded-lg p-6 bg-white shadow-sm">
+      <h2 className="font-semibold text-gray-800 text-lg mb-4">Watch how to do Close Books in Vyapar.</h2>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-sm text-gray-600">Watch this Video in:</span>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setLanguage('Hindi')}
+            className={`py-1 px-5 rounded-md text-sm border transition-all ${language === 'Hindi' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-500 hover:bg-blue-50'}`}
+          >
+            Hindi
+          </button>
+          <button
+            onClick={() => setLanguage('English')}
+            className={`py-1 px-5 rounded-md text-sm border transition-all ${language === 'English' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-blue-600 border-blue-500 hover:bg-blue-50'}`}
+          >
+            English
+          </button>
         </div>
-    );
+      </div>
+
+      <YouTubePlayerDialog videoId={videoIds[language as keyof typeof videoIds]}>
+        <div className="relative cursor-pointer group w-full aspect-video bg-red-600 rounded-lg flex flex-col justify-between p-4 text-white overflow-hidden">
+          <div className="z-10">
+            <h3 className="font-bold text-xl">Close Book karein</h3>
+            <h4 className="font-bold text-2xl">Financial Year 2023...</h4>
+            <h3 className="font-bold text-xl">Vyapar se</h3>
+          </div>
+          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <div className="bg-red-500 bg-opacity-80 rounded-full w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <PlayIcon />
+            </div>
+          </div>
+          <div className="z-10 text-right">
+            <p className="text-xs">1 minute me karein</p>
+            <p className="text-xs">financial year close</p>
+            <p className="text-xs">({language})</p>
+          </div>
+          <div className="absolute bottom-4 left-4 z-10 font-bold text-2xl">Vyapar</div>
+        </div>
+      </YouTubePlayerDialog>
+    </div>
+  );
 };
 
-
-// --- Componente principal de la página ---
-
+// --- Main Page ---
 const CloseBooksPage: NextPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8">

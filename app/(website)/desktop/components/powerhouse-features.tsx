@@ -89,7 +89,7 @@ export default function PowerhouseFeatures() {
   return (
     <section className="py-16 md:py-20 bg-[var(--background-section-gray)]">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-12">
           Turn Your PC into a Billing Powerhouse with Vyapar Software
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
@@ -109,7 +109,7 @@ export default function PowerhouseFeatures() {
                     <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-[var(--text-link-active)] rounded-l-lg"></div>
                   )}
                   <span className={`font-medium ${
-                    activeFeatureId === feature.id ? "text-[var(--text-primary)]" : "text-gray-600"
+                    activeFeatureId === feature.id ? "text-[var(--text-foreground)]" : "text-gray-600"
                   }`}>
                     {feature.title}
                   </span>
@@ -120,7 +120,7 @@ export default function PowerhouseFeatures() {
           
           <div key={activeFeatureId} className="lg:col-span-2 animate-in fade-in duration-500">
             <div className="space-y-6">
-              <p className="text-[var(--text-secondary)] text-base leading-relaxed">
+              <p className="text-[var(--text-foreground)] text-base leading-relaxed">
                 {activeFeature.description}
               </p>
               <div className="bg-white p-4 rounded-lg shadow-xl border border-gray-100">

@@ -1,10 +1,11 @@
-"use client"
+"use client";
+
 import ExcelSheetDownload from "../component/ExcelSheetDownload";
 
-export default function Home() {
+export default function ExportItemsPage() {
   return (
     <main>
-      {/* You can add other content here */}
+      {/* Add any other content or layout wrappers here */}
       <ExcelSheetDownload />
     </main>
   );

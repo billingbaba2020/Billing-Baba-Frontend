@@ -19,7 +19,7 @@ const featuresData = [
   {
     tabName: "Tax Invoicing",
     imageTitle: "GST\nInvoicing",
-    imageSrc: "/desktop/feature-tax.webp",
+    imageSrc: "/Desktop/Section4.webp",
     description: [
       <>
         With our powerful <strong className="text-[var(--primary-red)]">invoicing solution</strong>, create professional GST and non-GST bills easily on your PC in just a few clicks or within 30 seconds.
@@ -30,7 +30,7 @@ const featuresData = [
   {
     tabName: "Quick Sale Entry",
     imageTitle: "Add\nYour Sale",
-    imageSrc: "/desktop/feature-sale.webp",
+    imageSrc: "/Desktop/Section4.webp",
     description: [
       <>
         With the integration of <strong className="text-[var(--primary-red)]">barcode-based billing</strong> and desktop or laptop keyboard shortcuts, you can quickly enter sale details for quick billing.
@@ -41,7 +41,7 @@ const featuresData = [
   {
     tabName: "Customize your Bill",
     imageTitle: "Custom\nBilling",
-    imageSrc: "/desktop/feature-custom.webp",
+    imageSrc: "/Desktop/Section4.webp",
     description: [
       "Bring your brand closer to customers by customizing bills with ready-built templates. You can add your business logo, terms, payment details, and even QR codes directly from your desktop.",
     ],
@@ -49,7 +49,7 @@ const featuresData = [
   {
     tabName: "Easy Payment Modes",
     imageTitle: "Multi Payment\nOptions",
-    imageSrc: "/desktop/feature-payment.webp",
+    imageSrc: "/Desktop/Section4.webp",
     description: [
       "Help customers pay off with their choice – via cash, UPI, bank transfers, or split payments. The software records all transactions neatly, streamlining cash flow management from your PC.",
     ],
@@ -65,7 +65,7 @@ export default function DesktopFeaturesTabs() {
   return (
     <section className="py-16 md:py-20 bg-[var(--background-section-gray)]">
       <div className="container">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-primary)] mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--text-foreground)] mb-12">
           Essential PC Billing Software Features for Indian Vyapaaris
         </h2>
 

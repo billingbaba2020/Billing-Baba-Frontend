@@ -1,11 +1,12 @@
-import React from 'react'
+"use client";
 
-const page = () => {
+import ExcelSheetDownload from "../component/ExcelSheetDownload";
+
+export default function ExportItemsPage() {
   return (
-    <div>
-      export items
-    </div>
-  )
+    <main>
+      {/* Add any other content or layout wrappers here */}
+      <ExcelSheetDownload />
+    </main>
+  );
 }
-
-export default page

@@ -11,7 +11,7 @@ import InventoryTestimonials from "./components/InventoryTestimonials";
 import SuccessStorySection from "./components/SuccessStorySection";
 import InventoryFaqSection from "./components/InventoryFaqSection";
 import InventoryRatingSection from "./components/InventoryRatingSection";
-import InventoryIntroSection from "./components/InventoryIntroSection"; // 🔹 New section for rahul-cmtai content
+// import InventoryIntroSection from "./components/InventoryIntroSection"; // 🔹 New section for rahul-cmtai content
 
 // Main Page Component
 export default function InventoryPage() {
@@ -21,7 +21,7 @@ export default function InventoryPage() {
       <InventoryHeroSection />
 
       {/* Intro (rahul-cmtai breadcrumb + features/impact + CTA) */}
-      <InventoryIntroSection />
+      {/* <InventoryIntroSection /> */}
 
       {/* Core Sections */}
       <InventoryFeaturesSection />

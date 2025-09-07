@@ -11,8 +11,7 @@ import TailoredFeaturesSection1 from "./components/TailoredFeaturesSection1";
 import TailoredFeaturesSection from "./components/TailoredFeaturesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import WhyUseSection from "./components/WhyUseSection";
-import AccountingIntroSection from "./components/AccountingIntroSection"; // 🔹 New section for rahul-cmtai content
-
+  
 // --- The Main Page Component ---
 export default function AccountingPage() {
   return (
@@ -21,7 +20,7 @@ export default function AccountingPage() {
       <InventoryHeroSection />
 
       {/* Intro (rahul-cmtai breadcrumb + features/benefits + CTA) */}
-      <AccountingIntroSection />
+      {/* <AccountingIntroSection /> */}
 
       {/* Core Sections */}
       <WhyUseSection />

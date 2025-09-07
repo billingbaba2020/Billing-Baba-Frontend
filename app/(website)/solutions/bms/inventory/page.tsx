@@ -1,7 +1,6 @@
 import React from "react";
 
-// Step 1: Sabhi section components ko import karein
-// Yeh maana ja raha hai ki saare components 'components' sub-folder ke andar hain.
+// Section components
 import InventoryHeroSection from "./components/InventoryHeroSection";
 import InventoryFeaturesSection from "./components/InventoryFeaturesSection";
 import ServingIndustriesSection from "./components/ServingIndustriesSection";
@@ -12,12 +11,19 @@ import InventoryTestimonials from "./components/InventoryTestimonials";
 import SuccessStorySection from "./components/SuccessStorySection";
 import InventoryFaqSection from "./components/InventoryFaqSection";
 import InventoryRatingSection from "./components/InventoryRatingSection";
+// import InventoryIntroSection from "./components/InventoryIntroSection"; // 🔹 New section for rahul-cmtai content
 
-// Step 2: Page component banayein aur usmein saare sections ko use karein
+// Main Page Component
 export default function InventoryPage() {
   return (
-    <main>
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-100">
+      {/* Hero */}
       <InventoryHeroSection />
+
+      {/* Intro (rahul-cmtai breadcrumb + features/impact + CTA) */}
+      {/* <InventoryIntroSection /> */}
+
+      {/* Core Sections */}
       <InventoryFeaturesSection />
       <ServingIndustriesSection />
       <GstComplianceSection />

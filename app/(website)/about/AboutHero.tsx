@@ -5,7 +5,7 @@ const AboutHero = () => {
   return (
     // The 'overflow-hidden' class was removed from this div to fix the positioning issue.
     <div className="relative w-full bg-white font-sans mb-20 ">
-      <div className="bg-gradient-to-r from-[#E53E3E] to-[rgb(241,90,68)] mx-auto px-6 p-12 md:rounded-br-[240px]">
+      <div className="bg-gradient-to-r from-[var(--primary-red)] to-[var(--accent-orange)] mx-auto px-6 p-12 md:rounded-br-[240px]">
         <div className="flex flex-col lg:flex-row items-center   justify-center my-5  ">
           
           {/* Left Side: Text Content */}

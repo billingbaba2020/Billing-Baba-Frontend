@@ -2,36 +2,27 @@ import Image from 'next/image';
 
 const WorkWithUs = () => {
   return (
-    // बदला हुआ कोड: पैडिंग को रिस्पॉन्सिव बनाया
     <section className="relative w-full bg-white pt-20 pb-48 px-6 sm:px-10 lg:px-20 overflow-hidden font-sans">
       <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-12 z-10 relative">
         
-        {/* Text Content */}
-        {/* बदला हुआ कोड: टेक्स्ट को मोबाइल पर सेंटर किया */}
         <div className="lg:w-5/12 text-center lg:text-left">
-          {/* बदला हुआ कोड: फॉन्ट साइज़ को रिस्पॉन्सिव बनाया और क्लास को क्लीन किया */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[color:var(--primary-red)] mb-6">
             Work With Us
           </h2>
-          {/* बदला हुआ कोड: फॉन्ट साइज़ को रिस्पॉन्सिव बनाया */}
           <p className="text-lg lg:text-xl text-gray-700 leading-relaxed mb-8">
             Join our teams and have the freedom to do your best work. We are building a culture with amazing people like you at its centre. Your work here will help millions of small businesses succeed & grow
           </p>
-          {/* बदला हुआ कोड: क्लास को क्लीन किया */}
-          <button className="bg-red-600 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300">
+          <button className="bg-[var(--primary-red)] text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300">
             Check Open Positions
           </button>
         </div>
 
-        {/* Image Collage */}
-        {/* बदला हुआ कोड: इमेज कंटेनर की हाइट को रिस्पॉन्सिव बनाया */}
         <div className="w-full lg:w-6/12 h-[450px] sm:h-[500px] relative mt-12 lg:mt-0">
-          <div className="absolute w-[250px] h-[180px] top-0 left-[10px] rounded-2xl overflow-hidden shadow-xl z-10">
+          <div className="absolute w-[260px] h-[140px] md:w-[250px] md:h-[180px] top-0 left-[10px] rounded-2xl overflow-hidden z-10">
             <Image src="/Career/office2.webp" alt="Company office exterior" layout="fill" objectFit="cover" />
           </div>
           
-          <div className="absolute w-[250px] h-[380px] top-0 right-0 sm:right-[50px] rounded-2xl overflow-hidden shadow-xl z-30">
-            {/*VIDEO - बदला हुआ कोड: वीडियो को ऑटो-प्ले और लूप में चलाया*/}
+          <div className="absolute w-[160px] h-[260px] md:w-[250px] md:h-[380px] top-0 right-0 sm:right-[50px] rounded-2xl overflow-hidden z-30">
             <video 
               src="/Career/my-office-work-short-video.mp4"
               autoPlay
@@ -41,18 +32,17 @@ const WorkWithUs = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute w-[250px] h-[180px] top-[190px] left-0 sm:left-[60px] rounded-2xl overflow-hidden shadow-xl z-10">
+          <div className="absolute w-[200px] h-[100px] md:w-[250px] md:h-[180px] top-[150px] md:top-[190px] left-0 sm:left-[60px] rounded-2xl overflow-hidden  z-10">
             <Image src="/Career/office1.webp" alt="Team relaxing in a lounge" layout="fill" objectFit="cover" />
           </div>
 
-          <div className="absolute w-[250px] h-[140px] bottom-[-20px] left-1/4 sm:left-[120px] rounded-2xl overflow-hidden shadow-xl z-20">
+          <div className="absolute w-[250px] h-[140px] bottom-[40px] md:bottom-[-30px] left-1/4 sm:left-[120px] rounded-2xl overflow-hidden  z-20">
             <Image src="/Career/office3.jpg" alt="Team playing foosball" layout="fill" objectFit="cover" />
           </div>
         </div>
 
       </div>
 
-      {/* SVG Wave Background (यह अपने आप रिस्पॉन्सिव होता है) */}
       <div className="absolute bottom-0 left-0 w-full h-auto z-0">
         <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
           <path 

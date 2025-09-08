@@ -22,8 +22,7 @@ import {
   FileJson,
   ChevronDown,
 } from "lucide-react";
-import { format } from "date-fns";
-import * as XLSX from "xlsx"; 
+import { format } from "date-fns"; 
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -95,7 +94,7 @@ export default function Gstr1ReportPage() {
   }, [activeTab]);
 
   // ✅ Export Function Fix
-  const handleExport = (formatType: "json" | "xls") => {
+  const handleExport = async (formatType: "json" | "xls") => {
     const dataToExport = filteredData.map(({ type, id, ...rest }) => rest);
 
     if (formatType === "json") {
@@ -107,10 +106,15 @@ export default function Gstr1ReportPage() {
       link.download = `GSTR1_${activeTab}_report.json`;
       link.click();
     } else if (formatType === "xls") {
-      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Report");
-      XLSX.writeFile(workbook, `GSTR1_${activeTab}_report.xlsx`);
+      try {
+        const XLSX = await import("xlsx") as any;
+        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Report");
+        XLSX.writeFile(workbook, `GSTR1_${activeTab}_report.xlsx`);
+      } catch (error) {
+        console.error("Error exporting to Excel:", error);
+      }
     }
   };
 

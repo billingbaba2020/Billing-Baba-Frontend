@@ -27,7 +27,6 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import { format } from "date-fns";
-import * as XLSX from "xlsx";
 
 // --- डेटा की संरचना ---
 type ItemReportData = {
@@ -124,31 +123,36 @@ export default function ItemReportByPartyPage() {
   }, [filteredData]);
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
-    const dataToExport = filteredData.map((item) => ({
-      "Item Name": item.itemName,
-      "Sale Quantity": item.saleQty,
-      "Sale Amount": item.saleAmount,
-      "Purchase Quantity": item.purchaseQty,
-      "Purchase Amount": item.purchaseAmount,
-    }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    XLSX.utils.sheet_add_aoa(
-      worksheet,
-      [
+  const handleExportExcel = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = filteredData.map((item) => ({
+        "Item Name": item.itemName,
+        "Sale Quantity": item.saleQty,
+        "Sale Amount": item.saleAmount,
+        "Purchase Quantity": item.purchaseQty,
+        "Purchase Amount": item.purchaseAmount,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      XLSX.utils.sheet_add_aoa(
+        worksheet,
         [
-          "Total",
-          totals.saleQty,
-          totals.saleAmount,
-          totals.purchaseQty,
-          totals.purchaseAmount,
+          [
+            "Total",
+            totals.saleQty,
+            totals.saleAmount,
+            totals.purchaseQty,
+            totals.purchaseAmount,
+          ],
         ],
-      ],
-      { origin: -1 }
-    );
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ItemReportByParty");
-    XLSX.writeFile(workbook, "ItemReportByParty.xlsx");
+        { origin: -1 }
+      );
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "ItemReportByParty");
+      XLSX.writeFile(workbook, "ItemReportByParty.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

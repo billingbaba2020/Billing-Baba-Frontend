@@ -28,7 +28,6 @@ import {
 } from "@/components/ui/table";
 import { Label } from "@/components/ui/label";
 import { ChevronDown, Printer, FileText } from "lucide-react";
-import * as XLSX from "xlsx";
 
 type DiscountItem = {
   id: number;
@@ -120,35 +119,40 @@ export default function ItemWiseDiscountPage() {
   }, [filteredData]);
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
-    const dataToExport = filteredData.map((item) => ({
-      "Item Name": item.itemName,
-      "Total Qty Sold": item.totalQtySold,
-      "Total Sale Amount": item.totalSaleAmount,
-      "Total Disc. Amount": item.totalDiscountAmount,
-      "Avg. Disc. (%)":
-        item.totalSaleAmount > 0
-          ? ((item.totalDiscountAmount / item.totalSaleAmount) * 100).toFixed(2)
-          : 0,
-    }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    XLSX.utils.sheet_add_aoa(
-      worksheet,
-      [
+  const handleExportExcel = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = filteredData.map((item) => ({
+        "Item Name": item.itemName,
+        "Total Qty Sold": item.totalQtySold,
+        "Total Sale Amount": item.totalSaleAmount,
+        "Total Disc. Amount": item.totalDiscountAmount,
+        "Avg. Disc. (%)":
+          item.totalSaleAmount > 0
+            ? ((item.totalDiscountAmount / item.totalSaleAmount) * 100).toFixed(2)
+            : 0,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      XLSX.utils.sheet_add_aoa(
+        worksheet,
         [
-          "",
-          "",
-          "Total Sale:",
-          summary.totalSaleAmount,
-          "Total Discount:",
-          summary.totalDiscountAmount,
+          [
+            "",
+            "",
+            "Total Sale:",
+            summary.totalSaleAmount,
+            "Total Discount:",
+            summary.totalDiscountAmount,
+          ],
         ],
-      ],
-      { origin: -1 }
-    );
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ItemWiseDiscount");
-    XLSX.writeFile(workbook, "ItemWiseDiscount.xlsx");
+        { origin: -1 }
+      );
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "ItemWiseDiscount");
+      XLSX.writeFile(workbook, "ItemWiseDiscount.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

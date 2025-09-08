@@ -11,12 +11,18 @@ import TailoredFeaturesSection1 from "./components/TailoredFeaturesSection1";
 import TailoredFeaturesSection from "./components/TailoredFeaturesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import WhyUseSection from "./components/WhyUseSection";
-
+  
 // --- The Main Page Component ---
 export default function AccountingPage() {
   return (
-    <main>
+    <main className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
+      {/* Hero */}
       <InventoryHeroSection />
+
+      {/* Intro (rahul-cmtai breadcrumb + features/benefits + CTA) */}
+      {/* <AccountingIntroSection /> */}
+
+      {/* Core Sections */}
       <WhyUseSection />
       <IndustriesSection />
       <TailoredFeaturesSection1 />

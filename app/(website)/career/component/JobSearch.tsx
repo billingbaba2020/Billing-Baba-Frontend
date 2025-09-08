@@ -77,7 +77,7 @@ const JobSearch = () => {
   }, {});
 
   return (
-    <section className="flex flex-col h-screen bg-white px-20">
+    <section className="flex flex-col h-screen bg-white px-10 md:px-20">
       <div className="flex-shrink-0 p-6 border-b border-gray-200">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row gap-4">

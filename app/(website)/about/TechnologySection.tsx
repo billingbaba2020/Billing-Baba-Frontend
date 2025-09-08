@@ -62,7 +62,7 @@ const TechnologySection = () => {
       </section>
 
       {/* Floating Chat Button */}
-      <div className="fixed bottom-8 right-8 z-50">
+      {/* <div className="fixed bottom-8 right-8 z-50">
         <button className="bg-red-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors duration-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const TechnologySection = () => {
             />
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

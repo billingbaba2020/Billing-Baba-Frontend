@@ -7,7 +7,7 @@ const RecognitionSection = () => {
     <section className="font-sans relative mt-20 py-16">
       <div className="container mx-auto max-w-7xl px-6">
         {/* The gradient container is set to 'relative' to serve as the positioning context for the absolutely positioned image inside it. */}
-        <div className="relative bg-gradient-to-r from-[#E53E3E] to-[#F15A44] rounded-3xl">
+        <div className="relative bg-gradient-to-r from-[var(--primary-red)] to-[var(--accent-orange)] rounded-3xl">
           <div className="flex flex-col lg:flex-row items-center justify-between p-12 md:p-16 min-h-[24rem]">
             
             {/* Left Column: Text and Button */}

@@ -33,7 +33,7 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import { format } from "date-fns";
-import * as XLSX from "xlsx";
+// xlsx ko dynamically import karenge taaki SSR bundling issues na aaye
 
 // --- डेटा की संरचना ---
 type StockDetailData = {
@@ -138,7 +138,9 @@ export default function StockDetailPage() {
   }, [filteredData]);
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
+  const handleExportExcel = async () => {
+    const xlsx: any = await import("xlsx");
+    const { utils } = xlsx;
     const dataToExport = filteredData.map((item) => ({
       "Item Name": item.itemName,
       "Beginning Quantity": item.beginningQty,
@@ -148,8 +150,8 @@ export default function StockDetailPage() {
       "Sale Amount": item.saleAmount,
       "Closing Quantity": item.beginningQty + item.qtyIn - item.qtyOut,
     }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    XLSX.utils.sheet_add_aoa(
+    const worksheet = utils.json_to_sheet(dataToExport);
+    utils.sheet_add_aoa(
       worksheet,
       [
         [
@@ -164,9 +166,9 @@ export default function StockDetailPage() {
       ],
       { origin: -1 }
     );
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "StockDetailReport");
-    XLSX.writeFile(workbook, "StockDetailReport.xlsx");
+    const workbook = utils.book_new();
+    utils.book_append_sheet(workbook, worksheet, "StockDetailReport");
+    xlsx.writeFile(workbook, "StockDetailReport.xlsx");
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

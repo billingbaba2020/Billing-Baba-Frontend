@@ -1,11 +1,16 @@
+"use client"
 import React from "react"
-import { Search, Bell, Menu } from "lucide-react"
+import { Search, Bell, Menu, LogOut } from "lucide-react"
 
 interface HeaderProps {
   setIsMobileMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function Header({ setIsMobileMenuOpen }: HeaderProps) {
+  function handleLogout() {
+    document.cookie = `admin_auth=; Path=/; Max-Age=0; SameSite=Lax`;
+    window.location.href = '/login';
+  }
   return (
     <header className="sticky top-0 z-20 flex h-16 w-full flex-shrink-0 items-center justify-between border-b bg-card px-4 md:px-6">
       <div className="flex items-center gap-4">
@@ -32,9 +37,10 @@ export default function Header({ setIsMobileMenuOpen }: HeaderProps) {
           <Bell className="h-5 w-5 text-foreground" />
           <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-primary"></span>
         </button>
-        <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center font-bold text-foreground">
-          U
-        </div>
+        <button onClick={handleLogout} className="flex items-center gap-2 rounded-md border px-3 py-2 hover:bg-muted">
+          <LogOut className="h-4 w-4" />
+          <span className="hidden sm:inline">Logout</span>
+        </button>
       </div>
     </header>
   )

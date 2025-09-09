@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Calendar as CalendarIcon, Printer, FileSpreadsheet } from 'lucide-react';
 import { format } from 'date-fns';
-import * as XLSX from 'xlsx';
+// xlsx ko dynamically import karenge taaki SSR bundling issues na aaye
 
 // --- डेटा की संरचना ---
 type StockItem = {
@@ -63,7 +63,9 @@ export default function StockSummaryPage() {
         }, { stockQty: 0, stockValue: 0 });
     }, [filteredData]);
 
-    const handleExportExcel = () => {
+    const handleExportExcel = async () => {
+        const xlsx: any = await import('xlsx');
+        const { utils } = xlsx;
         const dataToExport = filteredData.map(item => ({
             'Item Name': item.name,
             'Sale Price': item.salePrice,
@@ -71,13 +73,13 @@ export default function StockSummaryPage() {
             'Stock Qty': item.stockQty,
             'Stock Value': item.stockQty * item.purchasePrice,
         }));
-        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-        XLSX.utils.sheet_add_aoa(worksheet, [
+        const worksheet = utils.json_to_sheet(dataToExport);
+        utils.sheet_add_aoa(worksheet, [
             ['Total', '', '', totals.stockQty, totals.stockValue]
         ], { origin: -1 });
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, "StockSummary");
-        XLSX.writeFile(workbook, "StockSummary.xlsx");
+        const workbook = utils.book_new();
+        utils.book_append_sheet(workbook, worksheet, "StockSummary");
+        xlsx.writeFile(workbook, "StockSummary.xlsx");
     };
     const handlePrint = () => {
         if (typeof window !== 'undefined') window.print();

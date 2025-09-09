@@ -27,7 +27,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, Printer, FileText, Search, Filter } from "lucide-react";
-import * as XLSX from "xlsx";
 import React from "react"; // React ko import karna zaroori hai
 
 type PartyReportData = {
@@ -203,32 +202,37 @@ export default function PartyReportByItemPage() {
     );
   }, [filteredData]);
 
-  const handleExportExcel = () => {
-    const dataToExport = filteredData.map((item) => ({
-      "Party Name": item.partyName,
-      "Sale Quantity": item.saleQty,
-      "Sale Amount": item.saleAmount,
-      "Purchase Quantity": item.purchaseQty,
-      "Purchase Amount": item.purchaseAmount,
-    }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    XLSX.utils.sheet_add_aoa(
-      worksheet,
-      [
+  const handleExportExcel = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = filteredData.map((item) => ({
+        "Party Name": item.partyName,
+        "Sale Quantity": item.saleQty,
+        "Sale Amount": item.saleAmount,
+        "Purchase Quantity": item.purchaseQty,
+        "Purchase Amount": item.purchaseAmount,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      XLSX.utils.sheet_add_aoa(
+        worksheet,
         [
-          "Total:",
-          "",
-          totals.saleQty,
-          totals.saleAmount,
-          totals.purchaseQty,
-          totals.purchaseAmount,
+          [
+            "Total:",
+            "",
+            totals.saleQty,
+            totals.saleAmount,
+            totals.purchaseQty,
+            totals.purchaseAmount,
+          ],
         ],
-      ],
-      { origin: -1 }
-    );
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "PartyReportByItem");
-    XLSX.writeFile(workbook, "PartyReportByItem.xlsx");
+        { origin: -1 }
+      );
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "PartyReportByItem");
+      XLSX.writeFile(workbook, "PartyReportByItem.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
 
   return (

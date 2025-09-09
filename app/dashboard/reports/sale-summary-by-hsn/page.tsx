@@ -26,7 +26,7 @@ import {
   FileSpreadsheet,
   Calendar as CalendarIcon,
 } from "lucide-react";
-import * as XLSX from "xlsx";
+// xlsx ko dynamically import karenge taaki SSR bundling issues na aaye
 
 // Table Header ke liye ek reusable component
 const TableHeaderCell = ({
@@ -128,11 +128,13 @@ export default function SaleSummaryByHSNPage() {
   }, [filteredData]);
 
   // Excel export function
-  const handleExportExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(filteredData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "HSN_Summary");
-    XLSX.writeFile(workbook, "SaleSummaryByHSN.xlsx");
+  const handleExportExcel = async () => {
+    const xlsx: any = await import("xlsx");
+    const { utils } = xlsx;
+    const worksheet = utils.json_to_sheet(filteredData);
+    const workbook = utils.book_new();
+    utils.book_append_sheet(workbook, worksheet, "HSN_Summary");
+    xlsx.writeFile(workbook, "SaleSummaryByHSN.xlsx");
   };
 
   return (

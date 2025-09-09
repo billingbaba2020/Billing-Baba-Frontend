@@ -27,7 +27,7 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import { format } from "date-fns";
-import * as XLSX from "xlsx";
+// Use dynamic import to avoid SSR bundling issues with xlsx
 
 // --- हर ट्रांजेक्शन के लिए डेटा की संरचना ---
 type TransactionData = {
@@ -151,7 +151,9 @@ export default function SalePurchaseReportByCategoryPage() {
   }, [reportData]);
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
+  const handleExportExcel = async () => {
+    const xlsx: any = await import("xlsx");
+    const { utils } = xlsx;
     const dataToExport = reportData.map((item) => ({
       "Item Category": item.category,
       "Sale Quantity": item.saleQty,
@@ -159,8 +161,8 @@ export default function SalePurchaseReportByCategoryPage() {
       "Purchase Quantity": item.purchaseQty,
       "Total Purchase Amount": item.purchaseAmount,
     }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    XLSX.utils.sheet_add_aoa(
+    const worksheet = utils.json_to_sheet(dataToExport);
+    utils.sheet_add_aoa(
       worksheet,
       [
         [
@@ -173,9 +175,9 @@ export default function SalePurchaseReportByCategoryPage() {
       ],
       { origin: -1 }
     );
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ReportByCategory");
-    XLSX.writeFile(workbook, "SalePurchaseReportByCategory.xlsx");
+    const workbook = utils.book_new();
+    utils.book_append_sheet(workbook, worksheet, "ReportByCategory");
+    xlsx.writeFile(workbook, "SalePurchaseReportByCategory.xlsx");
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

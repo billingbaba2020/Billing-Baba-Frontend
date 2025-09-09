@@ -1,3 +1,4 @@
+"use client";
 
 import HeroSection from "@/components/website/hero-section"
 import SocialProof from "@/components/website/social-proof"

@@ -27,7 +27,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ChevronDown, Printer, FileText, Search, Filter } from "lucide-react";
-import * as XLSX from "xlsx"; // Excel export के लिए
 
 // --- डेटा की संरचना ---
 type SacReportData = {
@@ -167,22 +166,27 @@ export default function SacReportPage() {
   }, [filteredData]);
 
   // --- Excel एक्सपोर्ट फंक्शन ---
-  const handleExportExcel = () => {
-    const dataToExport = filteredData.map((item) => ({
-      SAC: item.sac,
-      "Invoice Type": item.invoiceType,
-      "Total Value": item.totalValue,
-      "Taxable Value": item.taxableValue,
-      "IGST Amount": item.igstAmount,
-      "CGST Amount": item.cgstAmount,
-      "SGST Amount": item.sgstAmount,
-      "Add. Cess": item.addCess,
-    }));
+  const handleExportExcel = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = filteredData.map((item) => ({
+        SAC: item.sac,
+        "Invoice Type": item.invoiceType,
+        "Total Value": item.totalValue,
+        "Taxable Value": item.taxableValue,
+        "IGST Amount": item.igstAmount,
+        "CGST Amount": item.cgstAmount,
+        "SGST Amount": item.sgstAmount,
+        "Add. Cess": item.addCess,
+      }));
 
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "SAC_Report");
-    XLSX.writeFile(workbook, "SAC_Report.xlsx");
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "SAC_Report");
+      XLSX.writeFile(workbook, "SAC_Report.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
 
   // --- प्रिंट फंक्शन ---

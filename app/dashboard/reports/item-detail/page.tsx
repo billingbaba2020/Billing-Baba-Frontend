@@ -27,7 +27,6 @@ import {
   FileSpreadsheet,
 } from "lucide-react";
 import { format } from "date-fns";
-import * as XLSX from "xlsx";
 
 // --- डेटा की संरचना ---
 type ItemTransaction = {
@@ -143,19 +142,24 @@ export default function ItemDetailPage() {
   }, [transactions]);
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
+  const handleExportExcel = async () => {
     if (processedData.length === 0) return;
-    const dataToExport = processedData.map((item) => ({
-      Date: item.date,
-      "Sale Quantity": item.saleQty,
-      "Purchase Quantity": item.purchaseQty,
-      "Adjustment Quantity": item.adjustmentQty,
-      "Closing Quantity": item.closingQty,
-    }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ItemDetailReport");
-    XLSX.writeFile(workbook, `ItemDetail_${itemNameFilter}.xlsx`);
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = processedData.map((item) => ({
+        Date: item.date,
+        "Sale Quantity": item.saleQty,
+        "Purchase Quantity": item.purchaseQty,
+        "Adjustment Quantity": item.adjustmentQty,
+        "Closing Quantity": item.closingQty,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "ItemDetailReport");
+      XLSX.writeFile(workbook, `ItemDetail_${itemNameFilter}.xlsx`);
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

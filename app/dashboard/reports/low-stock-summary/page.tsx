@@ -22,7 +22,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Printer, FileSpreadsheet } from "lucide-react";
-import * as XLSX from "xlsx";
 
 // --- डेटा की संरचना ---
 type LowStockItem = {
@@ -119,17 +118,22 @@ export default function LowStockSummaryPage() {
   );
 
   // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-  const handleExportExcel = () => {
-    const dataToExport = filteredData.map((item) => ({
-      "Item Name": item.name,
-      "Minimum Stock Qty": item.minimumStockQty,
-      "Stock Qty": item.stockQty,
-      "Stock Value": item.stockQty * item.purchasePrice,
-    }));
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "LowStockSummary");
-    XLSX.writeFile(workbook, "LowStockSummary.xlsx");
+  const handleExportExcel = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = filteredData.map((item) => ({
+        "Item Name": item.name,
+        "Minimum Stock Qty": item.minimumStockQty,
+        "Stock Qty": item.stockQty,
+        "Stock Value": item.stockQty * item.purchasePrice,
+      }));
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "LowStockSummary");
+      XLSX.writeFile(workbook, "LowStockSummary.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
   const handlePrint = () => {
     if (typeof window !== "undefined") window.print();

@@ -1,10 +1,11 @@
 import React from 'react'
+import ImportFromTally from '../component/ImportFromTally'
 
 const page = () => {
   return (
-    <div>
-      import from tally
-    </div>
+    <main>
+      <ImportFromTally />
+    </main>
   )
 }
 

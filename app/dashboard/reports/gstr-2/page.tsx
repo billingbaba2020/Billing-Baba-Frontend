@@ -26,8 +26,7 @@ import {
   FileSpreadsheet,
   ChevronDown,
 } from "lucide-react";
-import { format } from "date-fns";
-import * as XLSX from "xlsx"; 
+import { format } from "date-fns"; 
 
 type Gstr2Data = {
   id: number;
@@ -83,12 +82,17 @@ export default function Gstr2ReportPage() {
   );
   const [toDate, setToDate] = useState<Date | undefined>(new Date(2025, 8, 30));
 
-  const handleExportXls = () => {
-    const dataToExport = data.map(({ id, ...rest }) => rest); 
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "GSTR2_Report");
-    XLSX.writeFile(workbook, "GSTR2_Report.xlsx");
+  const handleExportXls = async () => {
+    try {
+      const XLSX = await import("xlsx") as any;
+      const dataToExport = data.map(({ id, ...rest }) => rest); 
+      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "GSTR2_Report");
+      XLSX.writeFile(workbook, "GSTR2_Report.xlsx");
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+    }
   };
 
   const handlePrint = () => {

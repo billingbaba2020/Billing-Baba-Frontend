@@ -1,10 +1,11 @@
 import React from 'react'
+import BulkImportItems from '../component/BulkUpdateItems'
 
 const page = () => {
   return (
-    <div>
-      update items in bulk
-    </div>
+    <main>
+    <BulkImportItems />
+  </main>
   )
 }
 

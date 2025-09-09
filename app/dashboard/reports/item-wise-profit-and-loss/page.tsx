@@ -11,7 +11,6 @@ import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Calendar as CalendarIcon, Printer, FileSpreadsheet } from 'lucide-react';
 import { format } from 'date-fns';
-import * as XLSX from 'xlsx';
 
 // --- डेटा की संरचना ---
 type ItemProfitLossData = {
@@ -65,24 +64,29 @@ export default function ItemWiseProfitAndLossPage() {
     }, [filteredData]);
 
     // --- एक्सपोर्ट और प्रिंट फंक्शन ---
-    const handleExportExcel = () => {
-        const dataToExport = filteredData.map(item => ({
-            'Item Name': item.itemName,
-            'Sale': item.sale,
-            'Cr. Note / Sale Return': item.saleReturn,
-            'Purchase': item.purchase,
-            'Dr. Note / Purchase Return': item.purchaseReturn,
-            'Opening Stock': item.openingStock,
-            'Closing Stock': item.closingStock,
-            'Tax Receivable': item.taxReceivable,
-            'Tax Payable': item.taxPayable,
-            'Net Profit/Loss': getNetProfit(item),
-        }));
-        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-        XLSX.utils.sheet_add_aoa(worksheet, [['', '', '', '', '', '', '', '', 'Total Amount:', totalAmount]], { origin: -1 });
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, "ItemWiseProfitLoss");
-        XLSX.writeFile(workbook, "ItemWiseProfitLoss.xlsx");
+    const handleExportExcel = async () => {
+        try {
+            const XLSX = await import("xlsx") as any;
+            const dataToExport = filteredData.map(item => ({
+                'Item Name': item.itemName,
+                'Sale': item.sale,
+                'Cr. Note / Sale Return': item.saleReturn,
+                'Purchase': item.purchase,
+                'Dr. Note / Purchase Return': item.purchaseReturn,
+                'Opening Stock': item.openingStock,
+                'Closing Stock': item.closingStock,
+                'Tax Receivable': item.taxReceivable,
+                'Tax Payable': item.taxPayable,
+                'Net Profit/Loss': getNetProfit(item),
+            }));
+            const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+            XLSX.utils.sheet_add_aoa(worksheet, [['', '', '', '', '', '', '', '', 'Total Amount:', totalAmount]], { origin: -1 });
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "ItemWiseProfitLoss");
+            XLSX.writeFile(workbook, "ItemWiseProfitLoss.xlsx");
+        } catch (error) {
+            console.error("Error exporting to Excel:", error);
+        }
     };
     const handlePrint = () => { if (typeof window !== 'undefined') window.print(); };
 

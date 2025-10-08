@@ -19,13 +19,13 @@ import {
   ChevronDown,
   ChevronUp,
   Plus,
-  Send,
-  ArrowRight,
-  CirclePlus,
-  Activity,
   RotateCcw,
   LucideIcon,
+  ChevronLeft,
+  ChevronRight,
+  Search,
 } from "lucide-react";
+import SearchModal from "./SearchModal";
 
 interface SubItem {
   name: string;
@@ -158,9 +158,23 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   const currentView = searchParams.get("view");
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const size = useWindowSize();
   const isMobile = size.width ? size.width < 768 : false;
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.key === "f") {
+        event.preventDefault();
+        setIsModalOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   useEffect(() => {
     const activeParent = menuItems.find(
@@ -181,12 +195,8 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   };
 
   const currentVariant = isMobile
-    ? isMobileMenuOpen
-      ? "mobileOpen"
-      : "mobileClosed"
-    : isExpanded
-    ? "desktopExpanded"
-    : "desktopCollapsed";
+    ? isMobileMenuOpen ? "mobileOpen" : "mobileClosed"
+    : isExpanded ? "desktopExpanded" : "desktopCollapsed";
 
   const showText = isMobile || isExpanded;
 
@@ -195,132 +205,143 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
   };
 
   return (
-    <motion.aside
-      variants={sidebarVariants}
-      initial={false}
-      animate={currentVariant}
-      transition={{ type: "spring", stiffness: 120, damping: 20 }}
-      className="fixed left-0 top-0 z-40 h-screen bg-white text-gray-500 w-80 md:relative md:w-auto border-r border-gray-200"
-      onMouseEnter={isMobile ? undefined : () => setIsExpanded(true)}
-      onMouseLeave={isMobile ? undefined : () => setIsExpanded(false)}
-    >
-      <div className="flex h-full flex-col">
-        {/* Logo */}
-        <div
-          className={`flex items-center ${
-            showText ? "px-4" : "justify-center"
-          } h-16 flex-shrink-0`}
-        >
-          <Activity className="h-7 w-7 text-blue-600 flex-shrink-0" />
-          <AnimatePresence>
-            {showText && (
-              <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                transition={{ duration: 0.2, delay: 0.1 }}
-                className="ml-3 text-lg font-bold text-gray-800 whitespace-nowrap"
-              >
-                Billing Baba
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </div>
+    <>
+      <SearchModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        allItems={menuItems}
+      />
+      <motion.aside
+        variants={sidebarVariants}
+        initial={false}
+        animate={currentVariant}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        className="fixed left-0 top-0 z-40 h-screen bg-gray-900 text-gray-300 w-64 md:relative md:w-auto border-r border-gray-700"
+      >
+        {!isMobile && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="absolute top-4 -right-3 z-50 flex h-6 w-6 items-center justify-center rounded-full border border-gray-700 bg-gray-800 text-gray-300 shadow-md hover:bg-gray-700"
+          >
+            {isExpanded ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+          </button>
+        )}
 
-        {/* Navigation */}
-        <nav className="flex-grow px-3 overflow-y-auto thin-scrollbar">
-          <ul>
-            {menuItems.map((item) => {
-              const isAnySubItemActive = item.subItems
-                ? item.subItems.some((sub) => {
-                    const [path, query] = sub.path.split("?");
-                    const viewParam = new URLSearchParams(query || "").get(
-                      "view"
-                    );
-                    return pathname === path && currentView === viewParam;
-                  })
-                : false;
+        <div className="flex h-full flex-col">
+          <div className="flex h-16 flex-shrink-0 items-center px-4">
+            <AnimatePresence mode="wait">
+              {showText ? (
+                <motion.div
+                  key="search-bar"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                  className="relative w-full"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  <div className="flex h-10 w-full cursor-pointer items-center rounded-full border border-gray-700 bg-gray-800 px-4 text-sm text-gray-400">
+                    Open Anything (Ctrl+F)
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.button
+                  key="search-icon"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setIsModalOpen(true)}
+                  className="mx-auto flex h-10 w-10 items-center justify-center rounded-lg hover:bg-gray-700"
+                >
+                  <Search className="h-5 w-5 text-gray-300" />
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </div>
 
-              const isActive =
-                (item.path && pathname.startsWith(item.path) && !item.subItems) ||
-                isAnySubItemActive;
+          <nav className="flex-grow px-3 thin-scrollbar">
+            <ul>
+              {menuItems.map((item) => {
+                const isAnySubItemActive = item.subItems
+                  ? item.subItems.some((sub) => {
+                      const [path, query] = sub.path.split("?");
+                      const viewParam = new URLSearchParams(query || "").get("view");
+                      return pathname === path && currentView === viewParam;
+                    })
+                  : false;
+                const isActive = (item.path && pathname.startsWith(item.path) && !item.subItems) || isAnySubItemActive;
 
-              return (
-                <React.Fragment key={item.name}>
-                  <li className="group relative mb-1">
-                    <Link
-                      href={item.path || "#"}
-                      onClick={(e) => {
-                        if (item.type === "dropdown") {
-                          e.preventDefault();
-                          handleDropdownClick(item.name);
-                        }
-                      }}
-                      className={`flex items-center rounded-lg py-3 transition-colors duration-200 ${
-                        isActive ? "text-blue-600" : "hover:text-gray-900"
-                      } ${showText ? "px-4" : "justify-center"}`}
-                    >
-                      <item.icon className="z-10 h-5 w-5 flex-shrink-0" />
-                      <AnimatePresence>
-                        {showText && (
-                          <>
-                            <motion.span
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              exit={{
-                                opacity: 0,
-                                transition: { duration: 0.1 },
-                              }}
-                              transition={{ duration: 0.2, delay: 0.1 }}
-                              className="z-10 ml-4 flex-1 whitespace-nowrap text-sm font-medium"
-                            >
-                              {item.name}
-                            </motion.span>
-                            {item.type === "dropdown" && (
+                return (
+                  <React.Fragment key={item.name}>
+                    <li className="group relative">
+                      {isActive && (
+                        <motion.div
+                          className="absolute left-0 top-0 h-full w-1 bg-red-500"
+                          layoutId="active-line-indicator"
+                        />
+                      )}
+                      <Link
+                        href={item.path || "#"}
+                        onClick={(e) => {
+                          if (item.type === "dropdown") {
+                            e.preventDefault();
+                            handleDropdownClick(item.name);
+                          }
+                        }}
+                        className={`flex items-center rounded-lg py-2 transition-colors duration-200 ${
+                          isActive ? "text-white" : "hover:text-white"
+                        } ${showText ? "px-4" : "justify-center"}`}
+                      >
+                        <item.icon className="z-10 h-5 w-5 flex-shrink-0" />
+                        <AnimatePresence>
+                          {showText && (
+                            <>
                               <motion.span
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                exit={{ opacity: 0, transition: { duration: 0.1 } }}
                                 transition={{ duration: 0.2, delay: 0.1 }}
-                                className="z-10"
+                                className="z-10 ml-4 flex-1 whitespace-nowrap text-sm font-medium"
                               >
-                                {openDropdown === item.name ? (
-                                  <ChevronUp className="h-4 w-4" />
-                                ) : (
-                                  <ChevronDown className="h-4 w-4" />
-                                )}
+                                {item.name}
                               </motion.span>
-                            )}
-                            {item.type === "action" && (
-                              <Plus className="h-4 w-4 z-10" />
-                            )}
-                          </>
-                        )}
-                      </AnimatePresence>
-                    </Link>
+                              {item.type === "dropdown" && (
+                                <motion.span
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  exit={{ opacity: 0 }}
+                                  transition={{ duration: 0.2, delay: 0.1 }}
+                                  className="z-10"
+                                >
+                                  {openDropdown === item.name ? ( <ChevronUp className="h-4 w-4" /> ) : ( <ChevronDown className="h-4 w-4" /> )}
+                                </motion.span>
+                              )}
+                              {item.type === "action" && (
+                                <Plus className="h-4 w-4 z-10" />
+                              )}
+                            </>
+                          )}
+                        </AnimatePresence>
+                      </Link>
 
-                    {/* Tooltip when collapsed */}
-                    {!showText && (
-                      <div className="absolute left-full ml-3 hidden items-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold text-white opacity-0 group-hover:flex group-hover:opacity-100 transition-opacity duration-200">
-                        {item.name}
-                      </div>
-                    )}
+                      {!showText && (
+                        <div className="absolute left-full ml-3 z-50 hidden items-center rounded-md bg-gray-800 px-3 py-1.5 text-sm font-semibold text-white opacity-0 group-hover:flex group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+                          {item.name}
+                        </div>
+                      )}
 
-                    {/* Active indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-indicator"
-                        className="absolute inset-0 rounded-lg bg-blue-50 -z-10"
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      />
-                    )}
-                  </li>
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-bg-indicator"
+                          className="absolute inset-0 rounded-lg bg-gray-800 -z-10"
+                          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        />
+                      )}
+                    </li>
 
-                  {/* Dropdown items */}
-                  <AnimatePresence>
-                    {showText &&
-                      item.type === "dropdown" &&
-                      openDropdown === item.name && (
+                    <AnimatePresence>
+                      {showText && item.type === "dropdown" && openDropdown === item.name && (
                         <motion.ul
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
@@ -329,91 +350,31 @@ export default function Sidebar({ isMobileMenuOpen }: SidebarProps) {
                         >
                           {item.subItems?.map((subItem) => {
                             const [path, query] = subItem.path.split("?");
-                            const viewParam = new URLSearchParams(
-                              query || ""
-                            ).get("view");
-                            const isSubActive =
-                              pathname === path && currentView === viewParam;
+                            const viewParam = new URLSearchParams(query || "").get("view");
+                            const isSubActive = pathname === path && currentView === viewParam;
                             return (
-                              <li key={subItem.name} className="relative py-2">
+                              <li key={subItem.name} className="relative py-1.5">
                                 <Link
                                   href={subItem.path}
-                                  className={`flex items-center text-sm hover:text-gray-900 transition-colors ${
-                                    isSubActive
-                                      ? "text-blue-600 font-medium"
-                                      : "text-gray-500"
+                                  className={`flex items-center text-sm transition-colors ${
+                                    isSubActive ? "text-white font-medium" : "text-gray-400 hover:text-white"
                                   }`}
                                 >
                                   <span>{subItem.name}</span>
                                 </Link>
-                                {isSubActive && (
-                                  <motion.div
-                                    className="absolute left-[-24px] top-0 h-full w-[3px] bg-blue-500 rounded-r-full"
-                                    layoutId="active-subitem-indicator"
-                                  />
-                                )}
                               </li>
                             );
                           })}
                         </motion.ul>
                       )}
-                  </AnimatePresence>
-                </React.Fragment>
-              );
-            })}
-          </ul>
-        </nav>
-
-        {/* Footer */}
-        <div className="flex-shrink-0 p-3 overflow-hidden">
-          <AnimatePresence>
-            {showText && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{
-                  opacity: 1,
-                  height: "auto",
-                  transition: { type: "tween", duration: 0.2, delay: 0.15 },
-                }}
-                exit={{
-                  opacity: 0,
-                  height: 0,
-                  transition: { type: "tween", duration: 0.15 },
-                }}
-                className="space-y-3"
-              >
-                <div className="rounded-lg bg-blue-50 p-4 text-blue-900">
-                  <p className="text-sm font-bold">6 days Free Trial left</p>
-                  <div className="mt-2 h-1.5 w-full rounded-full bg-blue-200">
-                    <div
-                      className="h-1.5 rounded-full bg-green-500"
-                      style={{ width: "25%" }}
-                    ></div>
-                  </div>
-                </div>
-                <button className="flex w-full items-center justify-between rounded-lg bg-blue-600 px-4 py-3 text-white hover:bg-blue-700">
-                  <div className="flex items-center">
-                    <Send className="-rotate-45 h-5 w-5" />
-                    <span className="ml-3 text-sm font-semibold">
-                      Get Billing Baba Premium
-                    </span>
-                  </div>
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-                <button className="flex w-full items-center justify-between rounded-lg bg-gray-100 px-4 py-3 text-gray-800 hover:bg-gray-200">
-                  <div className="flex items-center">
-                    <CirclePlus className="h-5 w-5" />
-                    <span className="ml-3 text-sm font-semibold">
-                      My Company
-                    </span>
-                  </div>
-                  <ArrowRight className="h-5 w-5" />
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                    </AnimatePresence>
+                  </React.Fragment>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
-      </div>
-    </motion.aside>
+      </motion.aside>
+    </>
   );
 }

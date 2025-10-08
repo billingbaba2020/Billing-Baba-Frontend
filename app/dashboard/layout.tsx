@@ -1,27 +1,26 @@
 "use client"
 
-import React, { useState, Suspense } from "react" // 1. Import Suspense
+import React, { useState, Suspense } from "react"
 import Sidebar from "@/components/layouts/dashboard/sidebar"
 import Header from "@/components/layouts/dashboard/Header"
 import { motion, AnimatePresence } from "framer-motion"
 
-// A simple skeleton loader to show while the sidebar is loading
 const SidebarSkeleton = () => {
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-80 border-r border-gray-200 bg-white md:relative md:w-[5rem]">
-      <div className="flex h-16 items-center justify-center px-4">
-        <div className="h-7 w-7 animate-pulse rounded-md bg-gray-200"></div>
+    <aside className="fixed left-0 top-0 z-40 h-screen w-72 border-r border-gray-700 bg-gray-900 md:relative md:w-[5rem]">
+      <div className="flex h-16 items-center px-4">
+        <div className="h-10 w-full animate-pulse rounded-full bg-gray-800 md:h-10 md:w-10 md:rounded-lg"></div>
       </div>
       <div className="px-3">
-        <div className="mb-2 h-12 animate-pulse rounded-lg bg-gray-200"></div>
-        <div className="mb-2 h-12 animate-pulse rounded-lg bg-gray-200"></div>
-        <div className="mb-2 h-12 animate-pulse rounded-lg bg-gray-200"></div>
-        <div className="mb-2 h-12 animate-pulse rounded-lg bg-gray-200"></div>
+        <div className="mb-2 h-10 animate-pulse rounded-lg bg-gray-800"></div>
+        <div className="mb-2 h-10 animate-pulse rounded-lg bg-gray-800"></div>
+        <div className="mb-2 h-10 animate-pulse rounded-lg bg-gray-800"></div>
+        <div className="mb-2 h-10 animate-pulse rounded-lg bg-gray-800"></div>
+        <div className="mb-2 h-10 animate-pulse rounded-lg bg-gray-800"></div>
       </div>
     </aside>
   );
 };
-
 
 export default function DashboardLayout({
   children,
@@ -32,7 +31,6 @@ export default function DashboardLayout({
 
   return (
     <div className="flex h-screen w-full bg-background overflow-hidden">
-      {/* 2. Wrap the Sidebar component in Suspense and provide a fallback */}
       <Suspense fallback={<SidebarSkeleton />}>
         <Sidebar isMobileMenuOpen={isMobileMenuOpen} />
       </Suspense>
